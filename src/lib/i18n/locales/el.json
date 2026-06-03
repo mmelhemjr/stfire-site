@@ -1,0 +1,122 @@
+{
+  "common": {
+    "book_now": "Κράτηση",
+    "manage_bookings": "Διαχείριση Κρατήσεων",
+    "menu": "Μενού",
+    "home": "Αρχική",
+    "restaurant": "Εστιατόριο",
+    "beach_club": "Beach Club",
+    "bar": "Μπαρ & Νυχτερινή Ζωή",
+    "hotel": "Ξενοδοχείο"
+  },
+  "nav": {
+    "language": "Γλώσσα",
+    "english": "Αγγλικά",
+    "greek": "Ελληνικά",
+    "turkish": "Τουρκικά"
+  },
+  "home": {
+    "tagline": "Βρες τη",
+    "fire": "Φωτιά σου",
+    "subtitle": "Ζήστε την πολυτέλεια επαναπροσδιορισμένη στο Saint Fire Χίου. Εκεί όπου η Μεσόγειος συναντά την μοντέρνα κομψότητα."
+  },
+  "menu": {
+    "title": "Το Μενού μας",
+    "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
+    "search_placeholder": "Αναζήτηση στο μενού...",
+    "categories": {
+      "brunch_sandwiches": "Brunch Σάντουιτς",
+      "salads": "Σαλάτες",
+      "appetizers": "Ορεκτικά",
+      "main_courses": "Κυρίως Πιάτα",
+      "desserts": "Επιδόρπια",
+      "beverages_coffee": "Ροφήματα & Καφές",
+      "cocktails_spirits": "Κοκτέιλ & Ποτά",
+      "wines_beers": "Κρασιά & Μπύρες"
+    },
+    "dietary_info": "V - Χορτοφαγικό | VG - Vegan | GF - Χωρίς Γλουτένη"
+  },
+  "reservations": {
+  },
+  "beach_club": {
+    "title": "Beach Club",
+    "subtitle": "Ο Ιδιωτικός σας Παράδεισος",
+    "description": "Ζήστε την απόλυτη πολυτέλεια στο Saint Fire Beach Club. Με 75 αποκλειστικά σετ ομπρέλας διατεταγμένα σε τέλεια αρμονία κατά μήκος της παρθένας παραλίας μας, κάθε σημείο προσφέρει μια απαράμιλλη θέα στο Αιγαίο.",
+    "features": {
+      "umbrellas": "75 Premium Σετ Ομπρέλας (2 ξαπλώστρες)",
+      "service": "Πλήρες Beach Service",
+      "hours": "9:00 - 19:00 Καθημερινά",
+      "season": "Εποχιακά: Μάιος - Οκτώβριος"
+    },
+    "services": {
+      "title": "Υπηρεσίες Beach Club",
+      "seating": {
+        "title": "Premium Καθίσματα",
+        "description": "Πολυτελείς ξαπλώστρες και ομπρέλες σε 5 σειρές των 15, εξασφαλίζοντας τέλεια θέα και ιδιωτικότητα"
+      },
+      "service": {
+        "title": "Beach Service",
+        "description": "Αφοσιωμένο προσωπικό που σερβίρει δροσιστικά κοκτέιλ και ελαφριά γεύματα απευθείας στην ξαπλώστρα σας"
+      },
+      "activities": {
+        "title": "Θαλάσσια Σπορ",
+        "description": "Πρόσβαση σε διάφορες θαλάσσιες δραστηριότητες και ενοικίαση εξοπλισμού"
+      }
+    },
+    "reserve": "Κάντε Κράτηση"
+  },
+  "bar": {
+    "title": "Μπαρ & Νυχτερινή Ζωή",
+    "subtitle": "Ανάψτε τη Νύχτα σας",
+    "description": "Καθώς ο ήλιος δύει, το Saint Fire μεταμορφώνεται στον πιο αποκλειστικό προορισμό νυχτερινής διασκέδασης του νησιού. Απολαύστε signature κοκτέιλ, διεθνείς DJs και μια ατμόσφαιρα που αποτυπώνει την ουσία των μεσογειακών νυχτών.",
+    "features": {
+      "cocktails": "Signature Κοκτέιλ",
+      "djs": "Διεθνείς DJs",
+      "vip": "VIP Υπηρεσίες",
+      "hours": "21:00 - 01:00"
+    },
+    "signature_cocktails": "Signature Κοκτέιλ",
+    "cocktails": {
+      "mediterranean_fire": {
+        "title": "Mediterranean Fire",
+        "description": "Premium τεκίλα, φρέσκο λάιμ, αιματόκοκκο πορτοκάλι και πικάντικη γεύση"
+      },
+      "aegean_sunset": {
+        "title": "Aegean Sunset",
+        "description": "Τοπικό τζιν, αγγούρι, δυόσμος και μεσογειακό τόνικ"
+      },
+      "golden_hour": {
+        "title": "Golden Hour",
+        "description": "Παλαιωμένο ρούμι, φρούτα του πάθους, βανίλια και σαμπάνια"
+      }
+    },
+    "reserve_table": "Κράτηση VIP Τραπεζιού"
+  },
+  "hotel": {
+    "title": "Πολυτελής Διαμονή",
+    "subtitle": "Ζήστε την Απόλυτη Πολυτέλεια",
+    "description": "Βυθιστείτε στην επιτομή της μεσογειακής πολυτέλειας στο Saint Fire Hotel. Κάθε δωμάτιο προσφέρει εκπληκτική θέα στη θάλασσα, premium ανέσεις και απαράμιλλη άνεση για μια αξέχαστη διαμονή στη Χίο.",
+    "features": {
+      "suites": "Πολυτελείς Σουίτες με Θέα στη Θάλασσα",
+      "wifi": "Υψηλής Ταχύτητας WiFi",
+      "service": "24/7 Room Service",
+      "spa": "Πρόσβαση σε Πολυτελές Spa"
+    },
+    "room_types": "Τύποι Δωματίων",
+    "rooms": {
+      "deluxe": {
+        "title": "Deluxe με Θέα Θάλασσα",
+        "description": "Ευρύχωρο δωμάτιο με ιδιωτικό μπαλκόνι και θέα στη θάλασσα"
+      },
+      "executive": {
+        "title": "Executive Σουίτα",
+        "description": "Πολυτελής σουίτα με ξεχωριστό καθιστικό και premium ανέσεις"
+      },
+      "presidential": {
+        "title": "Presidential Σουίτα",
+        "description": "Απόλυτη πολυτέλεια με πανοραμική θέα και ιδιωτική βεράντα"
+      }
+    },
+    "book_stay": "Κάντε Κράτηση"
+  }
+}

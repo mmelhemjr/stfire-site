@@ -1,0 +1,211 @@
+{
+  "common": {
+    "book_now": "Rezervasyon",
+    "manage_bookings": "Rezervasyonları Yönet",
+    "menu": "Menü",
+    "home": "Ana Sayfa",
+    "restaurant": "Restoran",
+    "beach_club": "Plaj Kulübü",
+    "bar": "Bar & Gece Hayatı",
+    "hotel": "Otel"
+  },
+  "nav": {
+    "language": "Dil",
+    "english": "İngilizce",
+    "greek": "Yunanca",
+    "turkish": "Türkçe"
+  },
+  "home": {
+    "tagline": "Ateşini",
+    "fire": "Bul",
+    "subtitle": "Sakız Adası'ndaki Saint Fire'da yeniden tanımlanan lüksü deneyimleyin. Akdeniz'in modern zarafetle buluştuğu yer."
+  },
+  "beach_club": {
+    "title": "Plaj Kulübü",
+    "subtitle": "Özel Cennetiniz",
+    "description": "Saint Fire Beach Club'da en üst düzey plaj lüksünü yaşayın. Bakir plajımız boyunca mükemmel bir uyumla düzenlenmiş 75 özel şemsiye seti, her noktadan Ege Denizi'nin eşsiz manzarasını sunar.",
+    "features": {
+      "umbrellas": "75 Premium Şemsiye Seti (2 şezlong)",
+      "service": "Tam Plaj Servisi",
+      "hours": "9:00 - 19:00 Her Gün",
+      "season": "Sezonluk: Mayıs - Ekim"
+    },
+    "services": {
+      "title": "Plaj Kulübü Hizmetleri",
+      "seating": {
+        "title": "Premium Oturma",
+        "description": "15'er şezlongdan oluşan 5 sıra halinde düzenlenmiş lüks şezlong ve şemsiyeler, mükemmel manzara ve mahremiyet sağlar"
+      },
+      "service": {
+        "title": "Plaj Servisi",
+        "description": "Serinletici kokteyller ve hafif yemekleri şezlongunuza kadar getiren özel servis personeli"
+      },
+      "activities": {
+        "title": "Su Sporları",
+        "description": "Çeşitli su aktiviteleri ve ekipman kiralama imkanları"
+      }
+    },
+    "reserve": "Yerinizi Ayırtın"
+  },
+  "bar": {
+    "title": "Bar & Gece Hayatı",
+    "subtitle": "Gecenizi Alevlendirin",
+    "description": "Güneş batarken, Saint Fire adanın en özel gece hayatı mekanına dönüşür. Özel kokteylleri, dünya çapında DJ'leri ve Akdeniz gecelerinin özünü yakalayan atmosferi deneyimleyin.",
+    "features": {
+      "cocktails": "İmza Kokteyller",
+      "djs": "Uluslararası DJ'ler",
+      "vip": "VIP Servis",
+      "hours": "21:00 - 01:00"
+    },
+    "signature_cocktails": "İmza Kokteyller",
+    "cocktails": {
+      "mediterranean_fire": {
+        "title": "Mediterranean Fire",
+        "description": "Premium tekila, taze misket limonu, kan portakalı ve baharatlı dokunuş"
+      },
+      "aegean_sunset": {
+        "title": "Aegean Sunset",
+        "description": "Yerel cin, salatalık, nane ve Akdeniz toniği"
+      },
+      "golden_hour": {
+        "title": "Golden Hour",
+        "description": "Yıllanmış rom, çarkıfelek meyvesi, vanilya ve şampanya"
+      }
+    },
+    "reserve_table": "VIP Masa Rezervasyonu"
+  },
+  "hotel": {
+    "title": "Lüks Konaklama",
+    "subtitle": "Saf Lüksü Deneyimleyin",
+    "description": "Saint Fire Hotel'de Akdeniz lüksünün zirvesine dalın. Her oda, muhteşem deniz manzarası, premium olanaklar ve Sakız'da unutulmaz bir konaklama için eşsiz konfor sunar.",
+    "features": {
+      "suites": "Deniz Manzaralı Lüks Süitler",
+      "wifi": "Yüksek Hızlı WiFi",
+      "service": "24/7 Oda Servisi",
+      "spa": "Lüks Spa Erişimi"
+    },
+    "room_types": "Oda Tipleri",
+    "rooms": {
+      "deluxe": {
+        "title": "Deluxe Deniz Manzaralı",
+        "description": "Özel balkonlu ve deniz manzaralı geniş oda"
+      },
+      "executive": {
+        "title": "Executive Süit",
+        "description": "Ayrı oturma alanı ve premium olanaklara sahip lüks süit"
+      },
+      "presidential": {
+        "title": "Presidential Süit",
+        "description": "Panoramik manzara ve özel terasa sahip nihai lüks"
+      }
+    },
+    "book_stay": "Rezervasyon Yapın"
+  },
+  "menu": {
+    "title": "Menümüz",
+    "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
+    "search_placeholder": "Menüde ara...",
+    "categories": {
+      "brunch_sandwiches": "Brunch Sandviçleri",
+      "salads": "Salatalar",
+      "appetizers": "Başlangıçlar",
+      "main_courses": "Ana Yemekler",
+      "desserts": "Tatlılar",
+      "beverages_coffee": "İçecekler & Kahve",
+      "cocktails_spirits": "Kokteyl & İçkiler",
+      "wines_beers": "Şaraplar & Biralar"
+    },
+    "dietary_info": "V - Vejetaryen | VG - Vegan | GF - Glutensiz"
+  },
+  "reservations": {
+    "title": "Rezervasyon Yap",
+    "steps": {
+      "booking": "Rezervasyon Detayları",
+      "details": "Ek Bilgiler",
+      "confirmation": "Onay"
+    },
+    "form": {
+      "select_venue": "Mekan Seç",
+      "select_date": "Tarih Seç",
+      "select_time": "Saat Seç",
+      "party_size": {
+        "label": "Kişi Sayısı",
+        "select": "Misafir sayısını seçin",
+        "guest": "misafir",
+        "guests": "misafir"
+      },
+      "available_times": "Uygun Saatler",
+      "no_times": "Seçilen tarih ve kişi sayısı için uygun zaman dilimi bulunamadı",
+      "guest_info": {
+        "title": "Misafir Bilgileri",
+        "first_name": "Ad",
+        "last_name": "Soyad",
+        "email": "E-posta",
+        "phone": "Telefon"
+      },
+      "additional_details": {
+        "title": "Ek Detaylar",
+        "occasion": {
+          "label": "Özel Gün",
+          "none": "Yok",
+          "birthday": "Doğum Günü",
+          "anniversary": "Yıldönümü",
+          "business": "İş",
+          "date_night": "Romantik Akşam",
+          "special": "Özel Gün"
+        },
+        "allergies": "Alerjiler",
+        "dietary": "Ek Diyet Kısıtlamaları",
+        "dietary_placeholder": "Herhangi bir diyet kısıtlamanız..."
+      },
+      "buttons": {
+        "back": "Geri",
+        "next": "İleri",
+        "confirm": "Rezervasyonu Onayla"
+      }
+    }
+  },
+  "bookings": {
+    "title": "Rezervasyonları Yönet",
+    "refresh": "Rezervasyonları yenile",
+    "search": {
+      "placeholder": "İsim, e-posta, telefon ile ara...",
+      "date": "Tarih Seç",
+      "venue": "Tüm Mekanlar"
+    },
+    "table": {
+      "confirmation": "Onay",
+      "venue": "Mekan",
+      "date_time": "Tarih & Saat",
+      "guest": "Misafir",
+      "contact": "İletişim",
+      "details": "Detaylar",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "confirmed": "Onaylandı",
+      "cancelled": "İptal Edildi",
+      "completed": "Tamamlandı"
+    },
+    "cancel_modal": {
+      "title": "Rezervasyonu İptal Et",
+      "message": "Bu rezervasyonu iptal etmek istediğinizden emin misiniz?",
+      "details": {
+        "confirmation": "Onay",
+        "guest": "Misafir",
+        "date": "Tarih",
+        "time": "Saat",
+        "venue": "Mekan"
+      },
+      "warning": "Bu işlem geri alınamaz. Misafir bizimle yemek yemek isterse yeni bir rezervasyon yapması gerekecektir.",
+      "buttons": {
+        "keep": "Rezervasyonu Koru",
+        "cancel": "Rezervasyonu İptal Et",
+        "cancelling": "İptal Ediliyor..."
+      }
+    },
+    "no_bookings": "Rezervasyon bulunamadı",
+    "loading": "Yükleniyor..."
+  }
+}

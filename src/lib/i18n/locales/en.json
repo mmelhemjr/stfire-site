@@ -1,0 +1,239 @@
+{
+  "common": {
+    "book_now": "Book Now",
+    "manage_bookings": "Manage Bookings",
+    "menu": "Menu",
+    "home": "Home",
+    "restaurant": "Restaurant",
+    "beach_club": "Beach Club",
+    "bar": "Bar & Nightlife",
+    "hotel": "Hotel"
+  },
+  "nav": {
+    "language": "Language",
+    "english": "English",
+    "greek": "Greek",
+    "turkish": "Turkish"
+  },
+  "home": {
+    "tagline": "Find your",
+    "fire": "Fire",
+    "subtitle": "Experience luxury redefined at Saint Fire Chios. Where the Mediterranean meets modern elegance."
+  },
+  "restaurant": {
+    "title": "Fine Dining",
+    "subtitle": "Culinary Excellence",
+    "description": "Experience Mediterranean cuisine reimagined at Saint Fire Chios. Our expert chefs craft each dish with precision, using the finest local ingredients and modern techniques to create unforgettable dining experiences.",
+    "chef": "Executive Chef Andreas Nikolaou",
+    "hours": "Open daily 19:00 - 00:00",
+    "address": "74PC+98, Paralia Agias Fotinis",
+    "phone": "+30 2271 051335",
+    "view_menu": "View Menu",
+    "featured_dishes": "Featured Dishes",
+    "greek_salad": {
+      "title": "Greek Salad",
+      "description": "Fresh Mediterranean vegetables, Kalamata olives, and local feta cheese"
+    },
+    "chicken_sandwich": {
+      "title": "Crispy Chicken Sandwich",
+      "description": "House-made brioche, crispy chicken, and signature sauce"
+    },
+    "burger": {
+      "title": "Saint Fire Burger",
+      "description": "Premium beef patty with aged cheddar and truffle aioli"
+    },
+    "make_reservation": "Make a Reservation"
+  },
+  "beach_club": {
+    "title": "Beach Club",
+    "subtitle": "Your Private Paradise",
+    "description": "Experience the ultimate beach luxury at Saint Fire Beach Club. With 75 exclusive umbrella sets arranged in perfect harmony along our pristine beach, each spot offers an unparalleled view of the Aegean Sea.",
+    "features": {
+      "umbrellas": "75 Premium Umbrella Sets (2 chairs each)",
+      "service": "Full Beach Service",
+      "hours": "9:00 - 19:00 Daily",
+      "season": "Seasonal: May - October"
+    },
+    "services": {
+      "title": "Beach Club Services",
+      "seating": {
+        "title": "Premium Seating",
+        "description": "Luxurious sunbeds and umbrellas arranged in 5 rows of 15, ensuring perfect views and privacy"
+      },
+      "service": {
+        "title": "Beach Service",
+        "description": "Dedicated attendants serving refreshing cocktails and light meals directly to your sunbed"
+      },
+      "activities": {
+        "title": "Water Sports",
+        "description": "Access to various water activities and equipment rentals for adventure seekers"
+      }
+    },
+    "reserve": "Reserve Your Spot"
+  },
+  "bar": {
+    "title": "Bar & Nightlife",
+    "subtitle": "Ignite Your Night",
+    "description": "As the sun sets, Saint Fire transforms into the island's most exclusive nightlife destination. Experience craft cocktails, world-class DJs, and an atmosphere that captures the essence of Mediterranean nights.",
+    "features": {
+      "cocktails": "Signature Cocktails",
+      "djs": "International DJs",
+      "vip": "VIP Service",
+      "hours": "21:00 - 01:00"
+    },
+    "signature_cocktails": "Signature Cocktails",
+    "cocktails": {
+      "mediterranean_fire": {
+        "title": "Mediterranean Fire",
+        "description": "Premium tequila, fresh lime, blood orange, and a spicy kick"
+      },
+      "aegean_sunset": {
+        "title": "Aegean Sunset",
+        "description": "Local gin, cucumber, mint, and Mediterranean tonic"
+      },
+      "golden_hour": {
+        "title": "Golden Hour",
+        "description": "Aged rum, passion fruit, vanilla, and champagne float"
+      }
+    },
+    "reserve_table": "Reserve VIP Table"
+  },
+  "hotel": {
+    "title": "Luxury Stays",
+    "subtitle": "Experience Pure Luxury",
+    "description": "Immerse yourself in the epitome of Mediterranean luxury at Saint Fire Hotel. Each room offers stunning sea views, premium amenities, and unparalleled comfort for an unforgettable stay in Chios.",
+    "features": {
+      "suites": "Luxury Suites with Sea View",
+      "wifi": "High-Speed WiFi",
+      "service": "24/7 Room Service",
+      "spa": "Luxury Spa Access"
+    },
+    "room_types": "Room Types",
+    "rooms": {
+      "deluxe": {
+        "title": "Deluxe Sea View",
+        "description": "Spacious room with private balcony and sea views"
+      },
+      "executive": {
+        "title": "Executive Suite",
+        "description": "Luxury suite with separate living area and premium amenities"
+      },
+      "presidential": {
+        "title": "Presidential Suite",
+        "description": "Ultimate luxury with panoramic views and private terrace"
+      }
+    },
+    "book_stay": "Book Your Stay"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
+    "search_placeholder": "Search menu...",
+    "categories": {
+      "brunch_sandwiches": "Brunch Sandwiches",
+      "salads": "Salads",
+      "healthy_options": "Healthy Options",
+      "main_dishes": "Main Dishes",
+      "sandwiches_wraps": "Sandwiches & Wraps",
+      "pita_wraps": "Pita Wraps",
+      "burgers": "Burgers",
+      "desserts": "Desserts",
+      "smoothie_bowls": "Smoothie Bowls & Fruit Bowls",
+      "beverages_coffee": "Beverages & Coffee",
+      "cocktails_spirits": "Cocktails & Spirits",
+      "wines_beers": "Wines & Beers"
+    },
+    "dietary_info": "V - Vegetarian | VG - Vegan | GF - Gluten Free"
+  },
+  "reservations": {
+    "title": "Make a Reservation",
+    "steps": {
+      "booking": "Booking Details",
+      "details": "Additional Info",
+      "confirmation": "Confirm"
+    },
+    "form": {
+      "select_venue": "Select Venue",
+      "select_date": "Select Date",
+      "select_time": "Select Time",
+      "party_size": {
+        "label": "Party Size",
+        "select": "Select number of guests",
+        "guest": "guest",
+        "guests": "guests"
+      },
+      "available_times": "Available Times",
+      "no_times": "No available time slots for the selected date and party size",
+      "guest_info": {
+        "title": "Guest Information",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "additional_details": {
+        "title": "Additional Details",
+        "occasion": {
+          "label": "Occasion",
+          "none": "None",
+          "birthday": "Birthday",
+          "anniversary": "Anniversary",
+          "business": "Business",
+          "date_night": "Date Night",
+          "special": "Special Occasion"
+        },
+        "allergies": "Allergies",
+        "dietary": "Additional Dietary Restrictions",
+        "dietary_placeholder": "Any additional dietary restrictions..."
+      },
+      "buttons": {
+        "back": "Back",
+        "next": "Next",
+        "confirm": "Confirm Reservation"
+      }
+    }
+  },
+  "bookings": {
+    "title": "Manage Bookings",
+    "refresh": "Refresh bookings",
+    "search": {
+      "placeholder": "Search by name, email, phone...",
+      "date": "Select Date",
+      "venue": "All Venues"
+    },
+    "table": {
+      "confirmation": "Confirmation",
+      "venue": "Venue",
+      "date_time": "Date & Time",
+      "guest": "Guest",
+      "contact": "Contact",
+      "details": "Details",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    },
+    "cancel_modal": {
+      "title": "Cancel Reservation",
+      "message": "Are you sure you want to cancel this reservation?",
+      "details": {
+        "confirmation": "Confirmation",
+        "guest": "Guest",
+        "date": "Date",
+        "time": "Time",
+        "venue": "Venue"
+      },
+      "warning": "This action cannot be undone. The guest will need to make a new reservation if they wish to dine with us.",
+      "buttons": {
+        "keep": "Keep Reservation",
+        "cancel": "Cancel Reservation",
+        "cancelling": "Cancelling..."
+      }
+    },
+    "no_bookings": "No bookings found",
+    "loading": "Loading..."
+  }
+}
