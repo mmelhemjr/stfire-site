@@ -48,14 +48,9 @@ const Restaurant = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MenuIcon className="h-6 w-6 text-sf-gold" />
-                <a 
-                  href="https://qrco.de/bfAHw9" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-sf-gold transition"
-                >
+                <Link to="/menu" className="hover:text-sf-gold transition">
                   {t('restaurant.view_menu')}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -108,14 +103,12 @@ const Restaurant = () => {
         </div>
 
         <div className="mt-16 text-center space-y-4">
-          <a
-            href="https://qrco.de/bfAHw9"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/menu"
             className="inline-flex items-center px-8 py-3 bg-sf-gold text-sf-black rounded-full hover:bg-sf-gold/90 transition mr-4"
           >
             {t('restaurant.view_menu')}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

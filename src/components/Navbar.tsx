@@ -42,7 +42,7 @@ const Navbar = () => {
     { path: '/beach-club', label: t('common.beach_club') },
     { path: '/bar', label: t('common.bar') },
     { path: '/hotel', label: t('common.hotel') },
-    { path: 'https://qrco.de/bfAHw9', label: t('common.menu'), external: true },
+    { path: '/menu', label: t('common.menu') },
     ...(user ? [{ path: '/bookings', label: t('common.manage_bookings') }] : []),
     ...(isAdmin ? [
       { path: '/analytics', label: 'Analytics', icon: BarChart3 },

@@ -103,8 +103,32 @@
   },
   "menu": {
     "title": "Menümüz",
+    "pdf_subtitle": "Görüntülemek veya indirmek için bir menü seçin",
+    "pdf_hint": "PDF'yi yeni sekmede açmak için bir menüye dokunun",
     "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
     "search_placeholder": "Menüde ara...",
+    "pdfs": {
+      "breakfast_snack": {
+        "title": "Breakfast and Snack",
+        "description": "Kahvaltı ve hafif atıştırmalıklar"
+      },
+      "restaurant": {
+        "title": "Restaurant",
+        "description": "Ana restoran yemek menüsü"
+      },
+      "wine_spirits_cocktails": {
+        "title": "Wine List, Spirits and Cocktails",
+        "description": "Şaraplar, içkiler ve imza kokteyller"
+      },
+      "italian_night": {
+        "title": "Italian Night",
+        "description": "Özel İtalyan akşam menüsü"
+      },
+      "sushi_night": {
+        "title": "Sushi Night",
+        "description": "Özel suşi akşam menüsü"
+      }
+    },
     "categories": {
       "brunch_sandwiches": "Brunch Sandviçleri",
       "salads": "Salatalar",

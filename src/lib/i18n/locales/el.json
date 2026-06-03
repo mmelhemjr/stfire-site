@@ -22,8 +22,32 @@
   },
   "menu": {
     "title": "Το Μενού μας",
+    "pdf_subtitle": "Επιλέξτε μενού για προβολή ή λήψη",
+    "pdf_hint": "Πατήστε ένα μενού για να ανοίξει το PDF σε νέα καρτέλα",
     "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
     "search_placeholder": "Αναζήτηση στο μενού...",
+    "pdfs": {
+      "breakfast_snack": {
+        "title": "Breakfast and Snack",
+        "description": "Πρωινό και ελαφρά σνακ"
+      },
+      "restaurant": {
+        "title": "Restaurant",
+        "description": "Κύριο μενού εστιατορίου"
+      },
+      "wine_spirits_cocktails": {
+        "title": "Wine List, Spirits and Cocktails",
+        "description": "Κρασιά, ποτά και κοκτέιλ"
+      },
+      "italian_night": {
+        "title": "Italian Night",
+        "description": "Ειδικό ιταλικό μενού βραδιάς"
+      },
+      "sushi_night": {
+        "title": "Sushi Night",
+        "description": "Ειδικό μενού σούσι βραδιάς"
+      }
+    },
     "categories": {
       "brunch_sandwiches": "Brunch Σάντουιτς",
       "salads": "Σαλάτες",

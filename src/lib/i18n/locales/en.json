@@ -127,8 +127,32 @@
   },
   "menu": {
     "title": "Our Menu",
+    "pdf_subtitle": "Choose a menu to view or download",
+    "pdf_hint": "Tap a menu to open the PDF in a new tab",
     "subtitle": "SAINT FIRE – SEA SIDE RESTO BAR",
     "search_placeholder": "Search menu...",
+    "pdfs": {
+      "breakfast_snack": {
+        "title": "Breakfast and Snack",
+        "description": "Morning menu and light snacks"
+      },
+      "restaurant": {
+        "title": "Restaurant",
+        "description": "Main restaurant dining menu"
+      },
+      "wine_spirits_cocktails": {
+        "title": "Wine List, Spirits and Cocktails",
+        "description": "Wines, spirits, and signature cocktails"
+      },
+      "italian_night": {
+        "title": "Italian Night",
+        "description": "Special Italian evening menu"
+      },
+      "sushi_night": {
+        "title": "Sushi Night",
+        "description": "Special sushi evening menu"
+      }
+    },
     "categories": {
       "brunch_sandwiches": "Brunch Sandwiches",
       "salads": "Salads",
