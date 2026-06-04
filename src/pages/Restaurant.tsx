@@ -2,12 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChefHat, Clock, MapPin, Phone, Menu as MenuIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
 
 const Restaurant = () => {
   const { t } = useTranslation();
 
   return (
     <div className="pt-16">
+      <SEO
+        title="Restaurant | Mediterranean Dining in Chios"
+        description="Mediterranean cuisine served beachfront at Saint Fire in Chios. Fresh seasonal dishes, seafood, and an unforgettable view of the Aegean Sea."
+        canonical="/restaurant"
+        image="https://imgur.com/rCHhU9U.jpg"
+      />
       <div className="relative h-[60vh]">
         <div 
           className="absolute inset-0 bg-cover bg-center"

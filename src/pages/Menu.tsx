@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, FileText } from 'lucide-react';
 import { useTheme } from '../lib/theme';
 import { menuPdfs, getMenuPdfUrl } from '../data/menuPdfs';
+import SEO from '../components/SEO';
 
 export default function Menu() {
   const { t } = useTranslation();
@@ -11,6 +12,12 @@ export default function Menu() {
 
   return (
     <div className="pt-16 min-h-screen">
+      <SEO
+        title="Our Menu | Saint Fire Chios"
+        description="Explore the Saint Fire menu — Mediterranean dishes, fresh seafood, signature cocktails, and curated wines on Agia Fotia Beach, Chios."
+        canonical="/menu"
+        image="https://imgur.com/rCHhU9U.jpg"
+      />
       <div className="relative h-[60vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"

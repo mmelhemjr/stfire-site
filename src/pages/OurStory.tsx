@@ -1,11 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
 
 export default function OurStory() {
   const { t } = useTranslation();
 
   return (
     <div className="pt-16">
+      <SEO
+        title="Our Story | Saint Fire Chios"
+        description="Discover the story behind Saint Fire — a passion project rooted in Chios, built on the beauty of Agia Fotia Beach and the spirit of Greek hospitality."
+        canonical="/our-story"
+        image="https://imgur.com/QOqiroF.jpg"
+      />
       <div className="relative h-[60vh]">
         <div 
           className="absolute inset-0 bg-cover bg-center"

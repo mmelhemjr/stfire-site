@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /analytics
+Disallow: /manager
+Disallow: /bookings
+Disallow: /profile
+Disallow: /reservations
+
+Sitemap: https://saintfire.com/sitemap.xml

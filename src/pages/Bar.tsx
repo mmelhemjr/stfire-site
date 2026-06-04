@@ -2,12 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wine, Music, Star, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
 
 const Bar = () => {
   const { t } = useTranslation();
 
   return (
     <div className="pt-16">
+      <SEO
+        title="Bar & Cocktails | Sunset Drinks in Chios"
+        description="Sunset cocktails, signature drinks, and fine wines at Saint Fire in Chios. Beachfront atmosphere, handcrafted cocktails, and unforgettable evenings."
+        canonical="/bar"
+        image="https://imgur.com/QOqiroF.jpg"
+      />
       <div className="relative h-[60vh]">
         <div 
           className="absolute inset-0 bg-cover bg-center"

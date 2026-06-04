@@ -2,12 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Umbrella, Sun, Clock, Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
 
 const BeachClub = () => {
   const { t } = useTranslation();
 
   return (
     <div className="pt-16">
+      <SEO
+        title="Beach Club | Agia Fotia Beach, Chios"
+        description="Spend the day at Saint Fire Beach Club on Agia Fotia Beach, Chios. Premium sunbeds, full beach service, and the crystal-clear Aegean Sea."
+        canonical="/beach-club"
+        image="https://imgur.com/QOqiroF.jpg"
+      />
       <div className="relative h-[60vh]">
         <div 
           className="absolute inset-0 bg-cover bg-center"

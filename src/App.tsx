@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeContext, Theme, useTheme } from './lib/theme';
 import { AuthContext, useAuth } from './lib/auth';
 import { supabase } from './lib/supabase';
@@ -120,13 +121,15 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAdmin, loading }}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <Router>
-          <AppContent />
-        </Router>
-      </ThemeContext.Provider>
-    </AuthContext.Provider>
+    <HelmetProvider>
+      <AuthContext.Provider value={{ user, isAdmin, loading }}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <Router>
+            <AppContent />
+          </Router>
+        </ThemeContext.Provider>
+      </AuthContext.Provider>
+    </HelmetProvider>
   );
 }
 
