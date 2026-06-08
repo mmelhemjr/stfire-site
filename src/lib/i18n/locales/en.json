@@ -18,29 +18,29 @@
   "home": {
     "tagline": "Find your",
     "fire": "Fire",
-    "subtitle": "Experience luxury redefined at Saint Fire Chios. Where the Mediterranean meets modern elegance."
+    "subtitle": "Beachfront dining, handcrafted cocktails, and modern Greek cuisine on the shores of Agia Fotia, Chios."
   },
   "restaurant": {
     "title": "Fine Dining",
     "subtitle": "Culinary Excellence",
     "description": "Experience Mediterranean cuisine reimagined at Saint Fire Chios. Our expert chefs craft each dish with precision, using the finest local ingredients and modern techniques to create unforgettable dining experiences.",
     "chef": "Executive Chef Andreas Nikolaou",
-    "hours": "Open daily 19:00 - 00:00",
+    "hours": "Open daily 14:00 - 23:00",
     "address": "74PC+98, Paralia Agias Fotinis",
     "phone": "+30 2271 051335",
     "view_menu": "View Menu",
     "featured_dishes": "Featured Dishes",
     "greek_salad": {
-      "title": "Greek Salad",
-      "description": "Fresh Mediterranean vegetables, Kalamata olives, and local feta cheese"
+      "title": "Sea Symphony Kritharoto",
+      "description": "Fresh prawns, octopus, and calamari come together with large orzo in a rich tomato saganaki sauce, delicately infused with Chian souma. Finished with fresh herbs and PDO feta, this signature dish captures the essence of Greek seaside dining."
     },
     "chicken_sandwich": {
-      "title": "Crispy Chicken Sandwich",
-      "description": "House-made brioche, crispy chicken, and signature sauce"
+      "title": "Saint Fire Greek Salad",
+      "description": "Our signature Greek salad celebrates the flavors of Chios with vine-ripened tomatoes, crisp cucumber, roasted peppers, onion, Chian throumba olives, and PDO feta. Sea fennel, barley rusks, oregano, apple cider vinegar, and extra virgin olive oil complete this vibrant Mediterranean classic."
     },
     "burger": {
-      "title": "Saint Fire Burger",
-      "description": "Premium beef patty with aged cheddar and truffle aioli"
+      "title": "Fresh Fish Fillet",
+      "description": "Featuring the freshest fish of the day, this elegant dish is served with smooth celery root purée, butter-glazed vegetables, and a fragrant lemon-oil dressing. A contemporary expression of Mediterranean cuisine, showcasing the purity of fresh seafood and seasonal produce."
     },
     "make_reservation": "Make a Reservation"
   },
@@ -64,9 +64,9 @@
         "title": "Beach Service",
         "description": "Dedicated attendants serving refreshing cocktails and light meals directly to your sunbed"
       },
-      "activities": {
-        "title": "Water Sports",
-        "description": "Access to various water activities and equipment rentals for adventure seekers"
+      "vip": {
+        "title": "VIP Reservations",
+        "description": "Reserve your sunbed in advance and arrive to a guaranteed spot. Pure relaxation from the moment you arrive."
       }
     },
     "reserve": "Reserve Your Spot"
@@ -77,23 +77,23 @@
     "description": "As the sun sets, Saint Fire transforms into the island's most exclusive nightlife destination. Experience craft cocktails, world-class DJs, and an atmosphere that captures the essence of Mediterranean nights.",
     "features": {
       "cocktails": "Signature Cocktails",
-      "djs": "International DJs",
+      "djs": "Curated Music Experiences",
       "vip": "VIP Service",
       "hours": "21:00 - 01:00"
     },
     "signature_cocktails": "Signature Cocktails",
     "cocktails": {
       "mediterranean_fire": {
-        "title": "Mediterranean Fire",
-        "description": "Premium tequila, fresh lime, blood orange, and a spicy kick"
+        "title": "Pomegranate Negroni",
+        "description": "Inspired by Mediterranean sunsets, this vibrant cocktail combines pomegranate gin, vermouth, Campari, pomegranate cordial, and ruby port for a bold harmony of sweet fruit, refined bitterness, and velvety depth."
       },
       "aegean_sunset": {
-        "title": "Aegean Sunset",
-        "description": "Local gin, cucumber, mint, and Mediterranean tonic"
+        "title": "Mango Mirage V2",
+        "description": "A sun-soaked combination of gin, prosecco, elderflower liqueur, and luscious mango, lifted by sparkling mango soda. Fresh, tropical, and effortlessly vibrant—capturing the spirit of endless Mediterranean summers."
       },
       "golden_hour": {
-        "title": "Golden Hour",
-        "description": "Aged rum, passion fruit, vanilla, and champagne float"
+        "title": "Chios Sour",
+        "description": "A tribute to Chios in a glass. Homemade citron vodka and authentic mastiha liqueur meet fresh lemon and ripe raspberries, creating a vibrant sour with bright citrus character, delicate sweetness, and a smooth Mediterranean finish."
       }
     },
     "reserve_table": "Reserve VIP Table"
@@ -104,8 +104,8 @@
     "description": "Immerse yourself in the epitome of Mediterranean luxury at Saint Fire Hotel. Each room offers stunning sea views, premium amenities, and unparalleled comfort for an unforgettable stay in Chios.",
     "features": {
       "suites": "Luxury Suites with Sea View",
-      "wifi": "High-Speed WiFi",
-      "service": "24/7 Room Service",
+      "wifi": "Premium Amenities",
+      "service": "Personal Concierge Service",
       "spa": "Luxury Spa Access"
     },
     "room_types": "Room Types",

@@ -68,11 +68,13 @@ const Bar = () => {
           <h2 className="text-3xl font-bold mb-8 text-center">{t('bar.signature_cocktails')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
-              <img 
-                src="https://imgur.com/ETsMEaS.jpg" 
-                alt="Mediterranean Fire cocktail" 
-                className="w-full h-48 object-cover"
-              />
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Pom%20Negroni.png" 
+                  alt="Mediterranean Fire cocktail" 
+                  className="w-full h-full object-cover block scale-[1.08]" style={{ objectPosition: '40% center' }}
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-4">{t('bar.cocktails.mediterranean_fire.title')}</h3>
                 <p className="text-gray-300">
@@ -81,11 +83,13 @@ const Bar = () => {
               </div>
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
-              <img 
-                src="https://imgur.com/ANoywao.jpg" 
-                alt="Aegean Sunset cocktail" 
-                className="w-full h-48 object-cover"
-              />
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Mango%20Mirage%203.png" 
+                  alt="Aegean Sunset cocktail" 
+                  className="w-full h-full object-cover block"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-4">{t('bar.cocktails.aegean_sunset.title')}</h3>
                 <p className="text-gray-300">
@@ -94,11 +98,13 @@ const Bar = () => {
               </div>
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
-              <img 
-                src="https://imgur.com/UWempXr.jpg" 
-                alt="Golden Hour cocktail" 
-                className="w-full h-48 object-cover"
-              />
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Saint%20Fire%20Sour.png" 
+                  alt="Golden Hour cocktail" 
+                  className="w-full h-full object-cover block"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-4">{t('bar.cocktails.golden_hour.title')}</h3>
                 <p className="text-gray-300">

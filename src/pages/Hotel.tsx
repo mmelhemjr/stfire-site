@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bed, Wifi, Coffee, Space as Spa } from 'lucide-react';
+import { Bed, Sparkles, ConciergeBell, Space as Spa } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Hotel = () => {
@@ -18,7 +18,7 @@ const Hotel = () => {
           <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
         </div>
         <div className="relative h-full flex items-center justify-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white">Coming Spring of 2026</h1>
+          <h1 className="text-5xl md:text-7xl font-bold text-white">Coming Summer of 2027</h1>
         </div>
       </div>
 
@@ -35,11 +35,11 @@ const Hotel = () => {
                 <span>{t('hotel.features.suites')}</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Wifi className="h-6 w-6 text-sf-gold" />
+                <Sparkles className="h-6 w-6 text-sf-gold" />
                 <span>{t('hotel.features.wifi')}</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Coffee className="h-6 w-6 text-sf-gold" />
+                <ConciergeBell className="h-6 w-6 text-sf-gold" />
                 <span>{t('hotel.features.service')}</span>
               </div>
               <div className="flex items-center space-x-3">

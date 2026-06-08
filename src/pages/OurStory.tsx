@@ -30,22 +30,25 @@ export default function OurStory() {
       <div className="max-w-3xl mx-auto px-4 py-16">
         <div className="prose prose-lg dark:prose-invert mx-auto">
           <p className="text-xl leading-relaxed mb-8">
-            Welcome to Saint Fire Chios, the island's first high-end seaside restobar, where luxury meets 
-            the untamed beauty of Agia Fotia beach.
+            Welcome to Saint Fire Chios, a luxury seaside restobar overlooking the crystal waters of Agia Fotia Beach.
           </p>
 
           <p className="mb-8">
             Saint Fire is more than a destination—it's a passion project brought to life by three local 
-            families who have cherished this coastline for generations. Inspired by the raw, natural beauty 
-            of the Aegean and the rich culinary traditions of Greece, we set out to create an elevated yet 
-            welcoming experience for both locals and travelers alike.
+            families who have cherished this coastline for generations. Inspired by the raw beauty of the 
+            Aegean Sea and Greece's rich culinary heritage, we set out to create an elevated yet welcoming 
+            experience for both locals and travelers.
           </p>
 
           <p className="mb-8">
-            At Saint Fire, we blend exceptional service, refined ambiance, and Greek Fusion cuisine, crafted 
-            with the freshest local ingredients. Whether you're here for a leisurely seaside lunch, a sunset 
-            cocktail, or an unforgettable dining experience under the stars, Saint Fire offers a sanctuary 
-            where the elements of fire, sea, and earth come together in perfect harmony.
+            At Saint Fire, we blend exceptional hospitality, refined ambiance, and contemporary Greek Fusion 
+            cuisine crafted from the freshest local ingredients. Whether you're joining us for a leisurely 
+            lunch by the sea, sunset cocktails, or an unforgettable dinner under the stars, Saint Fire offers 
+            a place where fire, sea, and earth come together in perfect harmony.
+          </p>
+
+          <p className="mb-8">
+            More than a restaurant, Saint Fire is a celebration of Chios, its people, and the timeless beauty of the Mediterranean.
           </p>
 
           <p className="text-xl font-semibold text-sf-gold">

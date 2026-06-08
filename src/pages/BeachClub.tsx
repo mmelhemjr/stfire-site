@@ -80,9 +80,9 @@ const BeachClub = () => {
               </p>
             </div>
             <div className="bg-sf-black/50 rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4">{t('beach_club.services.activities.title')}</h3>
+              <h3 className="text-xl font-bold mb-4">{t('beach_club.services.vip.title')}</h3>
               <p className="text-gray-300">
-                {t('beach_club.services.activities.description')}
+                {t('beach_club.services.vip.description')}
               </p>
             </div>
           </div>

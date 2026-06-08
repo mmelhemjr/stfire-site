@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChefHat, Clock, MapPin, Phone, Menu as MenuIcon } from 'lucide-react';
+import { Clock, MapPin, Phone, Menu as MenuIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
@@ -38,10 +38,6 @@ const Restaurant = () => {
             </p>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <ChefHat className="h-6 w-6 text-sf-gold" />
-                <span>{t('restaurant.chef')}</span>
-              </div>
-              <div className="flex items-center space-x-3">
                 <Clock className="h-6 w-6 text-sf-gold" />
                 <span>{t('restaurant.hours')}</span>
               </div>
@@ -75,8 +71,8 @@ const Restaurant = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/JbwNmmT.jpg" 
-                alt="Greek Salad" 
+              src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Shrimp%20Kritharoto%20.png" 
+              alt="Shrimp Kritharoto"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
@@ -86,8 +82,8 @@ const Restaurant = () => {
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/GvaQB6A.jpg" 
-                alt="Crispy Chicken Sandwich" 
+              src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Greek%20Salad.png" 
+              alt="Greek Salad"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
@@ -97,8 +93,8 @@ const Restaurant = () => {
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/v6dJxGd.jpg" 
-                alt="Gourmet Burger" 
+              src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Fish%20.png" 
+              alt="Fish dish"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
