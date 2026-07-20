@@ -88,15 +88,15 @@
     "rooms": {
       "deluxe": {
         "title": "Deluxe Deniz Manzaralı",
-        "description": "Özel balkonlu ve deniz manzaralı geniş oda"
+        "description": "Ege Denizi'nin geniş manzarasına sahip özel balkonlu, zarif iç mekanları ve premium olanakları ile huzurlu bir konaklama sunan güzel bir oda."
       },
       "executive": {
-        "title": "Executive Süit",
-        "description": "Ayrı oturma alanı ve premium olanaklara sahip lüks süit"
+        "title": "Junior Süit",
+        "description": "Ayrı oturma alanı, özel jakuzi ve premium olanaklara sahip zarif bir süit — deniz kenarında konfor ve keyif arayanlar için ideal."
       },
       "presidential": {
-        "title": "Presidential Süit",
-        "description": "Panoramik manzara ve özel terasa sahip nihai lüks"
+        "title": "Executive Süit",
+        "description": "Özel havuzu, panoramik Ege manzarası, özel terası ve üst düzey lüks ile kişiselleştirilmiş hizmetiyle en prestijli konaklamamamız."
       }
     },
     "book_stay": "Rezervasyon Yapın"

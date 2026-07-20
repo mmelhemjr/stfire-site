@@ -12,7 +12,7 @@ const Hotel = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(https://imgur.com/QiOTn9A.jpg)',
+            backgroundImage: 'url(https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Hotel%20overview.png)',
           }}
         >
           <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
@@ -50,7 +50,7 @@ const Hotel = () => {
           </div>
           <div>
             <img 
-              src="https://imgur.com/b9tZH9P.jpg" 
+              src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Eye%20Level%20Pool.png" 
               alt="Luxury suite" 
               className="rounded-lg shadow-xl"
             />
@@ -62,9 +62,9 @@ const Hotel = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/UOt3dzx.jpg" 
-                alt="Deluxe room" 
-                className="w-full h-48 object-cover"
+                src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Room.png" 
+                alt="Deluxe sea view room" 
+                className="w-full h-48 object-cover object-top"
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{t('hotel.rooms.deluxe.title')}</h3>
@@ -73,8 +73,8 @@ const Hotel = () => {
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/zwizzlu.jpg" 
-                alt="Executive suite" 
+                src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/Living%20space%20.png" 
+                alt="Executive suite living space" 
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
@@ -84,8 +84,8 @@ const Hotel = () => {
             </div>
             <div className="bg-sf-black/50 rounded-lg overflow-hidden">
               <img 
-                src="https://imgur.com/b9tZH9P.jpg" 
-                alt="Presidential suite" 
+                src="https://lpwzdmgonrsopihvhohj.supabase.co/storage/v1/object/public/2026%20Photos/private%20pool%20room.png" 
+                alt="Presidential suite with private pool" 
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">

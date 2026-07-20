@@ -112,15 +112,15 @@
     "rooms": {
       "deluxe": {
         "title": "Deluxe Sea View",
-        "description": "Spacious room with private balcony and sea views"
+        "description": "A beautifully appointed room featuring a private balcony with sweeping views of the Aegean Sea, refined interiors, and premium amenities for a truly restful stay."
       },
       "executive": {
-        "title": "Executive Suite",
-        "description": "Luxury suite with separate living area and premium amenities"
+        "title": "Junior Suite",
+        "description": "An elegantly designed suite with a separate living area, private hot tub, and premium amenities — perfect for those seeking comfort and indulgence by the sea."
       },
       "presidential": {
-        "title": "Presidential Suite",
-        "description": "Ultimate luxury with panoramic views and private terrace"
+        "title": "Executive Suite",
+        "description": "Our most prestigious accommodation, featuring a private pool, panoramic Aegean views, a private terrace, and an elevated level of luxury and personalized service."
       }
     },
     "book_stay": "Book Your Stay"
