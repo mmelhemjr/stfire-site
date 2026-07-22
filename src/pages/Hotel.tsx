@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bed, Sparkles, ConciergeBell, Space as Spa } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import HotelInterestModal from '../components/HotelInterestModal';
 
 const Hotel = () => {
   const { t } = useTranslation();
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="pt-16">
@@ -96,9 +98,23 @@ const Hotel = () => {
           </div>
         </div>
 
-        <div className="mt-16 text-center">
+        {/* Join the Flame CTA */}
+        <div className="mt-16 text-center py-16 border-t border-white/10">
+          <p className="text-sf-gold text-sm tracking-widest uppercase mb-3">Priority Access</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Be Among the First</h2>
+          <p className="text-gray-400 max-w-md mx-auto mb-8">
+            Join our exclusive priority list for early access, special offers, and updates as Saint Fire Hotel prepares to open in Summer 2027.
+          </p>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="bg-sf-gold text-black px-10 py-4 rounded-lg font-semibold text-lg hover:bg-sf-gold/90 transition-colors"
+          >
+            Join the Flame
+          </button>
         </div>
       </div>
+
+      <HotelInterestModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }
