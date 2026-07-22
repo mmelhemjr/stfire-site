@@ -13,6 +13,8 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
     email: '',
     phone: '',
     country: '',
+    check_in: '',
+    check_out: '',
     comments: '',
   });
   const [loading, setLoading] = useState(false);
@@ -36,6 +38,8 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
       email: form.email,
       phone: form.phone || null,
       country: form.country || null,
+      check_in: form.check_in || null,
+      check_out: form.check_out || null,
       comments: form.comments || null,
     });
 
@@ -158,6 +162,34 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                     placeholder="e.g. Greece, United States, Turkey"
                     className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-sf-gold/60 transition-colors"
                   />
+                </div>
+
+                {/* Dates */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm text-gray-300 mb-1">
+                      Preferred Check-in <span className="text-gray-500 text-xs">(optional)</span>
+                    </label>
+                    <input
+                      type="date"
+                      name="check_in"
+                      value={form.check_in}
+                      onChange={handleChange}
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sf-gold/60 transition-colors [color-scheme:dark]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-300 mb-1">
+                      Preferred Check-out <span className="text-gray-500 text-xs">(optional)</span>
+                    </label>
+                    <input
+                      type="date"
+                      name="check_out"
+                      value={form.check_out}
+                      onChange={handleChange}
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sf-gold/60 transition-colors [color-scheme:dark]"
+                    />
+                  </div>
                 </div>
 
                 {/* Comments */}
