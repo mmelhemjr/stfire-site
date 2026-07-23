@@ -486,7 +486,7 @@ export default function CRM() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">CRM</h2>
+        <h2 className="text-2xl font-bold">Guests</h2>
         <div className="flex gap-2">
           <button className={tabClass(section === 'restaurant')} onClick={() => setSection('restaurant')}>
             <UtensilsCrossed className="h-4 w-4" />

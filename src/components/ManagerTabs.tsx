@@ -20,7 +20,7 @@ export default function ManagerTabs({ activeTab, onChange }: ManagerTabsProps) {
     { id: 'tables', label: 'Table Management', icon: LayoutDashboard },
     { id: 'bookings', label: 'Bookings', icon: CalendarRange },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-    { id: 'crm', label: 'CRM', icon: Users },
+    { id: 'crm', label: 'Guests', icon: Users },
   ];
 
   return (
