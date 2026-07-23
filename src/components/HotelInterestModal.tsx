@@ -13,8 +13,8 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
     email: '',
     phone: '',
     country: '',
-    check_in: '2027-06-01',
-    check_out: '2027-06-30',
+    check_in: '',
+    check_out: '',
     comments: '',
   });
   const [loading, setLoading] = useState(false);
@@ -175,6 +175,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                       name="check_in"
                       value={form.check_in}
                       onChange={handleChange}
+                      onFocus={() => { if (!form.check_in) setForm(f => ({ ...f, check_in: '2027-06-01' })); }}
                       className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sf-gold/60 transition-colors [color-scheme:dark]"
                     />
                   </div>
@@ -187,6 +188,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                       name="check_out"
                       value={form.check_out}
                       onChange={handleChange}
+                      onFocus={() => { if (!form.check_out) setForm(f => ({ ...f, check_out: '2027-06-30' })); }}
                       className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sf-gold/60 transition-colors [color-scheme:dark]"
                     />
                   </div>
