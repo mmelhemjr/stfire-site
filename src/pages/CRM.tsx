@@ -85,9 +85,19 @@ function RestaurantCRM({ theme }: { theme: string }) {
     const { data, error: err } = await supabase
       .from('reservations')
       .select('*, area:areas(name)')
-      .order('date', { ascending: false });
-    if (err) setError('Failed to load reservations');
-    else setReservations(data || []);
+      .order('created_at', { ascending: true });
+    if (err) {
+      setError('Failed to load reservations');
+    } else {
+      // Deduplicate by email — keep earliest (first visit)
+      const seen = new Set<string>();
+      const unique = (data || []).filter(r => {
+        if (seen.has(r.email.toLowerCase())) return false;
+        seen.add(r.email.toLowerCase());
+        return true;
+      });
+      setReservations(unique);
+    }
     setLoading(false);
   };
 
