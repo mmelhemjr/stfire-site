@@ -11,6 +11,7 @@ import { useTheme } from '../lib/theme';
 import ManagerTabs from '../components/ManagerTabs';
 import Analytics from './Analytics';
 import { default as BookingsPage } from './Bookings';
+import CRM from './CRM';
 import TableLegend from '../components/TableLegend';
 import type { Area, TableType, TimeSlot, VenueTable } from '../lib/types';
 
@@ -506,6 +507,7 @@ function Manager() {
 
         {activeTab === 'analytics' && <Analytics />}
         {activeTab === 'bookings' && <BookingsPage />}
+        {activeTab === 'crm' && <CRM />}
         {activeTab === 'tables' && (
           <>
         {error && (
