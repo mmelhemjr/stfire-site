@@ -12,6 +12,7 @@ import ManagerTabs from '../components/ManagerTabs';
 import Analytics from './Analytics';
 import { default as BookingsPage } from './Bookings';
 import CRM from './CRM';
+import { TeamManager } from './CRM';
 import TableLegend from '../components/TableLegend';
 import type { Area, TableType, TimeSlot, VenueTable } from '../lib/types';
 
@@ -508,6 +509,9 @@ function Manager() {
         {activeTab === 'analytics' && <Analytics />}
         {activeTab === 'bookings' && <BookingsPage />}
         {activeTab === 'crm' && <CRM />}
+        {activeTab === 'team' && (
+          <div className="pt-4"><TeamManager /></div>
+        )}
         {activeTab === 'tables' && (
           <>
         {error && (

@@ -479,7 +479,8 @@ interface SiteUser {
   created_at: string;
 }
 
-function TeamManager({ theme }: { theme: string }) {
+export function TeamManager() {
+  const { theme } = useTheme();
   const [users, setUsers] = useState<SiteUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -662,7 +663,7 @@ function TeamManager({ theme }: { theme: string }) {
 
 export default function CRM() {
   const { theme } = useTheme();
-  const [section, setSection] = useState<'restaurant' | 'hotel' | 'team'>('restaurant');
+  const [section, setSection] = useState<'restaurant' | 'hotel'>('restaurant');
 
   const tabClass = (active: boolean) =>
     `flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition ${
@@ -686,16 +687,11 @@ export default function CRM() {
             <Hotel className="h-4 w-4" />
             Hotel Interest
           </button>
-          <button className={tabClass(section === 'team')} onClick={() => setSection('team')}>
-            <ShieldCheck className="h-4 w-4" />
-            Team
-          </button>
         </div>
       </div>
 
       {section === 'restaurant' && <RestaurantCRM theme={theme} />}
       {section === 'hotel' && <HotelCRM theme={theme} />}
-      {section === 'team' && <TeamManager theme={theme} />}
     </div>
   );
 }

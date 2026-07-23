@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../lib/theme';
-import { LayoutDashboard, BarChart3, CalendarRange, Users } from 'lucide-react';
+import { LayoutDashboard, BarChart3, CalendarRange, Users, ShieldCheck } from 'lucide-react';
 
 interface Tab {
   id: string;
@@ -21,6 +21,7 @@ export default function ManagerTabs({ activeTab, onChange }: ManagerTabsProps) {
     { id: 'bookings', label: 'Bookings', icon: CalendarRange },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'crm', label: 'Guests', icon: Users },
+    { id: 'team', label: 'Team', icon: ShieldCheck },
   ];
 
   return (
