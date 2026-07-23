@@ -481,180 +481,176 @@ interface SiteUser {
 
 export function TeamManager() {
   const { theme } = useTheme();
-  const [users, setUsers] = useState<SiteUser[]>([]);
+  const [admins, setAdmins] = useState<SiteUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
-  const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [removingId, setRemovingId] = useState<string | null>(null);
+
+  // Add admin form
+  const [addEmail, setAddEmail] = useState('');
+  const [addLoading, setAddLoading] = useState(false);
+  const [addError, setAddError] = useState('');
+  const [addSuccess, setAddSuccess] = useState('');
 
   const cardClass = theme === 'dark' ? 'bg-gray-800/30' : 'bg-white border border-gray-200';
   const inputClass = theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-200 text-gray-900';
 
-  const fetchUsers = async () => {
+  const fetchAdmins = async () => {
     setLoading(true);
     setError(null);
     const { data, error: err } = await supabase
       .from('users')
       .select('id, email, first_name, last_name, role, created_at')
-      .order('role', { ascending: true })
+      .eq('role', 'admin')
       .order('created_at', { ascending: false });
-    if (err) setError('Failed to load users');
-    else setUsers(data || []);
+    if (err) setError('Failed to load admins');
+    else setAdmins(data || []);
     setLoading(false);
   };
 
-  useEffect(() => { fetchUsers(); }, []);
+  useEffect(() => { fetchAdmins(); }, []);
 
-  const toggleRole = async (id: string, currentRole: string) => {
-    const newRole = currentRole === 'admin' ? 'user' : 'admin';
-    if (newRole === 'user' && !confirm('Remove admin access for this user?')) return;
-    setUpdatingId(id);
-    const { error: err } = await supabase.from('users').update({ role: newRole }).eq('id', id);
-    if (err) setError('Failed to update role');
-    else setUsers(prev => prev.map(u => u.id === id ? { ...u, role: newRole as 'user' | 'admin' } : u));
-    setUpdatingId(null);
+  const handleRemove = async (id: string, email: string) => {
+    if (!confirm(`Remove admin access for ${email}?`)) return;
+    setRemovingId(id);
+    const { error: err } = await supabase.from('users').update({ role: 'user' }).eq('id', id);
+    if (err) setError('Failed to remove admin');
+    else setAdmins(prev => prev.filter(u => u.id !== id));
+    setRemovingId(null);
   };
 
-  const filtered = users.filter(u => {
-    const q = search.toLowerCase();
-    return (
-      u.email.toLowerCase().includes(q) ||
-      (u.first_name ?? '').toLowerCase().includes(q) ||
-      (u.last_name ?? '').toLowerCase().includes(q)
-    );
-  });
+  const handleAddAdmin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAddLoading(true);
+    setAddError('');
+    setAddSuccess('');
 
-  const admins = filtered.filter(u => u.role === 'admin');
-  const regularUsers = filtered.filter(u => u.role === 'user');
+    const { data, error: err } = await supabase
+      .from('users')
+      .select('id, email, first_name, last_name, role, created_at')
+      .eq('email', addEmail.trim().toLowerCase())
+      .single();
 
-  const UserRow = ({ u, i }: { u: SiteUser; i: number }) => (
-    <tr
-      className={`border-b transition ${
-        theme === 'dark'
-          ? `border-gray-700/50 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'} hover:bg-white/5`
-          : `border-gray-100 ${i % 2 === 0 ? '' : 'bg-gray-50'} hover:bg-gray-100`
-      }`}
-    >
-      <td className="px-4 py-3 font-medium whitespace-nowrap">
-        {u.first_name || u.last_name ? `${u.first_name ?? ''} ${u.last_name ?? ''}`.trim() : '—'}
-      </td>
-      <td className="px-4 py-3 text-gray-400">{u.email}</td>
-      <td className="px-4 py-3">
-        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-          u.role === 'admin' ? 'bg-sf-gold/20 text-sf-gold' : 'bg-gray-500/20 text-gray-400'
-        }`}>
-          {u.role}
-        </span>
-      </td>
-      <td className="px-4 py-3 whitespace-nowrap text-gray-400">
-        {format(new Date(u.created_at), 'MMM d, yyyy')}
-      </td>
-      <td className="px-4 py-3">
-        <button
-          onClick={() => toggleRole(u.id, u.role)}
-          disabled={updatingId === u.id}
-          className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg transition disabled:opacity-40 ${
-            u.role === 'admin'
-              ? 'bg-red-500/10 text-red-400 hover:bg-red-500/20'
-              : 'bg-sf-gold/10 text-sf-gold hover:bg-sf-gold/20'
-          }`}
-        >
-          {updatingId === u.id
-            ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            : u.role === 'admin'
-              ? <><Shield className="h-3.5 w-3.5" /> Remove Admin</>
-              : <><ShieldCheck className="h-3.5 w-3.5" /> Make Admin</>
-          }
-        </button>
-      </td>
-    </tr>
-  );
+    if (err || !data) {
+      setAddError('No account found with that email. They need to sign up first.');
+      setAddLoading(false);
+      return;
+    }
+
+    if (data.role === 'admin') {
+      setAddError('This user is already an admin.');
+      setAddLoading(false);
+      return;
+    }
+
+    const { error: updateErr } = await supabase.from('users').update({ role: 'admin' }).eq('id', data.id);
+    if (updateErr) {
+      setAddError('Failed to grant admin access. Please try again.');
+    } else {
+      setAdmins(prev => [{ ...data, role: 'admin' }, ...prev]);
+      setAddSuccess(`${addEmail} is now an admin.`);
+      setAddEmail('');
+    }
+    setAddLoading(false);
+  };
 
   return (
-    <div>
-      <div className="flex gap-3 mb-4 items-center justify-between">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+    <div className="max-w-2xl">
+      <h2 className="text-2xl font-bold mb-8">Team</h2>
+
+      {/* Add Admin */}
+      <div className={`${cardClass} rounded-xl p-6 mb-8`}>
+        <h3 className="text-sm font-semibold text-sf-gold uppercase tracking-widest mb-4 flex items-center gap-2">
+          <ShieldCheck className="h-4 w-4" /> Add Admin
+        </h3>
+        <p className="text-sm text-gray-400 mb-4">
+          Enter the email address of an existing user to grant them admin access.
+        </p>
+        <form onSubmit={handleAddAdmin} className="flex gap-3">
           <input
-            type="text"
-            placeholder="Search name or email…"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className={`pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none ${inputClass}`}
+            type="email"
+            value={addEmail}
+            onChange={e => { setAddEmail(e.target.value); setAddError(''); setAddSuccess(''); }}
+            placeholder="email@example.com"
+            required
+            className={`flex-1 px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:border-sf-gold/60 transition-colors ${inputClass}`}
           />
-        </div>
-        <button onClick={fetchUsers} className="p-2 rounded-lg hover:bg-gray-700 transition">
-          <RefreshCw className="h-4 w-4 text-gray-400" />
-        </button>
+          <button
+            type="submit"
+            disabled={addLoading}
+            className="px-5 py-2.5 bg-sf-gold text-black rounded-lg font-semibold text-sm hover:bg-sf-gold/90 transition disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+          >
+            {addLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Grant Access'}
+          </button>
+        </form>
+        {addError && <p className="text-red-400 text-sm mt-3">{addError}</p>}
+        {addSuccess && <p className="text-green-400 text-sm mt-3">✓ {addSuccess}</p>}
       </div>
 
-      {error && (
-        <div className="flex items-center gap-2 bg-red-500/10 text-red-400 p-3 rounded-lg mb-4">
-          <AlertCircle className="h-4 w-4" /> {error}
-        </div>
-      )}
+      {/* Current Admins */}
+      <div>
+        <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+          <Shield className="h-4 w-4" /> Current Admins ({admins.length})
+        </h3>
 
-      {loading ? (
-        <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-sf-gold" /></div>
-      ) : (
-        <div className="space-y-6">
-          {/* Admins */}
-          <div>
-            <h3 className="text-sm font-semibold text-sf-gold uppercase tracking-widest mb-3 flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4" /> Admins ({admins.length})
-            </h3>
-            <div className={`${cardClass} rounded-xl overflow-hidden`}>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
-                      <th className="px-4 py-3 text-left font-medium">Name</th>
-                      <th className="px-4 py-3 text-left font-medium">Email</th>
-                      <th className="px-4 py-3 text-left font-medium">Role</th>
-                      <th className="px-4 py-3 text-left font-medium">Joined</th>
-                      <th className="px-4 py-3 text-left font-medium">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {admins.map((u, i) => <UserRow key={u.id} u={u} i={i} />)}
-                    {admins.length === 0 && (
-                      <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-500">No admins found</td></tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        {error && (
+          <div className="flex items-center gap-2 bg-red-500/10 text-red-400 p-3 rounded-lg mb-4">
+            <AlertCircle className="h-4 w-4" /> {error}
           </div>
+        )}
 
-          {/* All Users */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-              <Shield className="h-4 w-4" /> All Users ({regularUsers.length})
-            </h3>
-            <div className={`${cardClass} rounded-xl overflow-hidden`}>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
-                      <th className="px-4 py-3 text-left font-medium">Name</th>
-                      <th className="px-4 py-3 text-left font-medium">Email</th>
-                      <th className="px-4 py-3 text-left font-medium">Role</th>
-                      <th className="px-4 py-3 text-left font-medium">Joined</th>
-                      <th className="px-4 py-3 text-left font-medium">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {regularUsers.map((u, i) => <UserRow key={u.id} u={u} i={i} />)}
-                    {regularUsers.length === 0 && (
-                      <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-500">No users found</td></tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        {loading ? (
+          <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-sf-gold" /></div>
+        ) : (
+          <div className={`${cardClass} rounded-xl overflow-hidden`}>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
+                  <th className="px-4 py-3 text-left font-medium">Name</th>
+                  <th className="px-4 py-3 text-left font-medium">Email</th>
+                  <th className="px-4 py-3 text-left font-medium">Added</th>
+                  <th className="px-4 py-3 text-left font-medium">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {admins.map((u, i) => (
+                  <tr
+                    key={u.id}
+                    className={`border-b transition ${
+                      theme === 'dark'
+                        ? `border-gray-700/50 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'} hover:bg-white/5`
+                        : `border-gray-100 ${i % 2 === 0 ? '' : 'bg-gray-50'} hover:bg-gray-100`
+                    }`}
+                  >
+                    <td className="px-4 py-3 font-medium">
+                      {u.first_name || u.last_name ? `${u.first_name ?? ''} ${u.last_name ?? ''}`.trim() : '—'}
+                    </td>
+                    <td className="px-4 py-3 text-gray-400">{u.email}</td>
+                    <td className="px-4 py-3 text-gray-400 whitespace-nowrap">
+                      {format(new Date(u.created_at), 'MMM d, yyyy')}
+                    </td>
+                    <td className="px-4 py-3">
+                      <button
+                        onClick={() => handleRemove(u.id, u.email)}
+                        disabled={removingId === u.id}
+                        className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition disabled:opacity-40"
+                      >
+                        {removingId === u.id
+                          ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          : <><Trash2 className="h-3.5 w-3.5" /> Remove</>
+                        }
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {admins.length === 0 && (
+                  <tr><td colSpan={4} className="px-4 py-8 text-center text-gray-500">No admins yet</td></tr>
+                )}
+              </tbody>
+            </table>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
