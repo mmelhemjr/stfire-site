@@ -13,8 +13,8 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
     email: '',
     phone: '',
     country: '',
-    check_in: '',
-    check_out: '',
+    check_in: '2027-06-01',
+    check_out: '2027-06-30',
     comments: '',
   });
   const [loading, setLoading] = useState(false);
