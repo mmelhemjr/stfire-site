@@ -72,7 +72,6 @@ function RestaurantCRM({ theme }: { theme: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<keyof Reservation>('date');
   const [sortDir, setSortDir] = useState<SortDir>('desc');
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -94,11 +93,6 @@ function RestaurantCRM({ theme }: { theme: string }) {
 
   useEffect(() => { fetchReservations(); }, []);
 
-  const handleStatusChange = async (id: string, status: Reservation['status']) => {
-    await supabase.from('reservations').update({ status }).eq('id', id);
-    setReservations(prev => prev.map(r => r.id === id ? { ...r, status } : r));
-  };
-
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this reservation?')) return;
     setDeletingId(id);
@@ -113,7 +107,6 @@ function RestaurantCRM({ theme }: { theme: string }) {
   };
 
   const filtered = reservations
-    .filter(r => statusFilter === 'all' || r.status === statusFilter)
     .filter(r => {
       const q = search.toLowerCase();
       return (
@@ -135,15 +128,6 @@ function RestaurantCRM({ theme }: { theme: string }) {
       ? sortDir === 'asc' ? <ChevronUp className="h-3 w-3 inline ml-1" /> : <ChevronDown className="h-3 w-3 inline ml-1" />
       : null;
 
-  const statusBadge = (status: string) => {
-    const map: Record<string, string> = {
-      confirmed: 'bg-green-500/20 text-green-400',
-      cancelled: 'bg-red-500/20 text-red-400',
-      completed: 'bg-blue-500/20 text-blue-400',
-    };
-    return `px-2 py-0.5 rounded-full text-xs font-medium ${map[status] ?? ''}`;
-  };
-
   return (
     <div>
       {/* Toolbar */}
@@ -159,34 +143,16 @@ function RestaurantCRM({ theme }: { theme: string }) {
               className={`pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none ${inputClass}`}
             />
           </div>
-          <select
-            value={statusFilter}
-            onChange={e => setStatusFilter(e.target.value)}
-            className={`px-3 py-2 border rounded-lg text-sm focus:outline-none ${inputClass}`}
-          >
-            <option value="all">All Statuses</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
           <button onClick={fetchReservations} className="p-2 rounded-lg hover:bg-gray-700 transition">
             <RefreshCw className="h-4 w-4 text-gray-400" />
           </button>
         </div>
         <button
-          onClick={() => exportCSV('reservations.csv', filtered.map(r => ({
+          onClick={() => exportCSV('restaurant-guests.csv', filtered.map(r => ({
             Name: `${r.first_name} ${r.last_name}`,
             Email: r.email,
             Phone: r.telephone,
-            Date: r.date,
-            Time: r.time,
-            'Party Size': r.party_size,
-            Area: (r.area as any)?.name ?? '',
-            Status: r.status,
-            Occasion: r.occasion ?? '',
-            'Confirmation #': r.confirmation_number,
-            'Dietary Restrictions': r.dietary_restrictions ?? '',
-            Submitted: r.created_at,
+            'First Visit': format(new Date(r.created_at), 'MMM d, yyyy'),
           })))}
           className="flex items-center gap-2 px-4 py-2 bg-sf-gold/10 text-sf-gold border border-sf-gold/30 rounded-lg text-sm hover:bg-sf-gold/20 transition"
         >
@@ -195,7 +161,7 @@ function RestaurantCRM({ theme }: { theme: string }) {
         </button>
       </div>
 
-      <p className="text-sm text-gray-400 mb-3">{filtered.length} reservation{filtered.length !== 1 ? 's' : ''}</p>
+      <p className="text-sm text-gray-400 mb-3">{filtered.length} guest{filtered.length !== 1 ? 's' : ''}</p>
 
       {error && (
         <div className="flex items-center gap-2 bg-red-500/10 text-red-400 p-3 rounded-lg mb-4">
@@ -215,13 +181,8 @@ function RestaurantCRM({ theme }: { theme: string }) {
                     { label: 'Name', field: 'first_name' as keyof Reservation },
                     { label: 'Email', field: 'email' as keyof Reservation },
                     { label: 'Phone', field: 'telephone' as keyof Reservation },
-                    { label: 'Date', field: 'date' as keyof Reservation },
-                    { label: 'Time', field: 'time' as keyof Reservation },
-                    { label: 'Party', field: 'party_size' as keyof Reservation },
-                    { label: 'Area', field: null as any },
-                    { label: 'Status', field: 'status' as keyof Reservation },
-                    { label: 'Occasion', field: 'occasion' as keyof Reservation },
-                    { label: 'Actions', field: null as any },
+                    { label: 'First Visit', field: 'created_at' as keyof Reservation },
+                    { label: 'Delete', field: null as any },
                   ].map(col => (
                     <th
                       key={col.label}
@@ -247,24 +208,9 @@ function RestaurantCRM({ theme }: { theme: string }) {
                     <td className="px-4 py-3 font-medium whitespace-nowrap">{r.first_name} {r.last_name}</td>
                     <td className="px-4 py-3 text-gray-400">{r.email}</td>
                     <td className="px-4 py-3 text-gray-400">{r.telephone}</td>
-                    <td className="px-4 py-3 whitespace-nowrap">{format(new Date(r.date), 'MMM d, yyyy')}</td>
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      {format(new Date(`2000-01-01T${r.time}`), 'h:mm a')}
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                      {format(new Date(r.created_at), 'MMM d, yyyy')}
                     </td>
-                    <td className="px-4 py-3 text-center">{r.party_size}</td>
-                    <td className="px-4 py-3 text-gray-400">{(r.area as any)?.name ?? '—'}</td>
-                    <td className="px-4 py-3">
-                      <select
-                        value={r.status}
-                        onChange={e => handleStatusChange(r.id, e.target.value as Reservation['status'])}
-                        className={`${statusBadge(r.status)} border-0 bg-transparent cursor-pointer focus:outline-none`}
-                      >
-                        <option value="confirmed">confirmed</option>
-                        <option value="completed">completed</option>
-                        <option value="cancelled">cancelled</option>
-                      </select>
-                    </td>
-                    <td className="px-4 py-3 text-gray-400">{r.occasion ?? '—'}</td>
                     <td className="px-4 py-3">
                       <button
                         onClick={() => handleDelete(r.id)}
@@ -280,7 +226,7 @@ function RestaurantCRM({ theme }: { theme: string }) {
                   </tr>
                 ))}
                 {filtered.length === 0 && (
-                  <tr><td colSpan={10} className="px-4 py-12 text-center text-gray-500">No reservations found</td></tr>
+                  <tr><td colSpan={5} className="px-4 py-12 text-center text-gray-500">No guests found</td></tr>
                 )}
               </tbody>
             </table>
