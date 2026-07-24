@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { X, Flame } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = 'service_38yzito';
+const EMAILJS_TEMPLATE_ID = 'template_61q9oti';
+const EMAILJS_PUBLIC_KEY = 'SrF3xGDupVRj8T5Tq';
 
 interface HotelInterestModalProps {
   isOpen: boolean;
@@ -43,13 +48,34 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
       comments: form.comments || null,
     });
 
-    setLoading(false);
-
     if (supabaseError) {
+      setLoading(false);
       setError('Something went wrong. Please try again.');
-    } else {
-      setSubmitted(true);
+      return;
     }
+
+    // Send email notification to team
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone || '—',
+          country: form.country || '—',
+          check_in: form.check_in || '—',
+          check_out: form.check_out || '—',
+          comments: form.comments || '—',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+    } catch {
+      // Email failure is silent — submission is already saved to Supabase
+    }
+
+    setLoading(false);
+    setSubmitted(true);
   };
 
   return (
