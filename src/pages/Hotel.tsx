@@ -87,17 +87,17 @@ const Hotel = () => {
       </div>
 
       {/* ── Island Soul. Seaside Rhythm. ── */}
-      <div className="max-w-7xl mx-auto px-8 py-24">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div style={{ backgroundColor: '#1C2040' }} className="px-8 md:px-16 py-20">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
             <h2
-              className="text-4xl md:text-5xl font-light mb-8 leading-snug"
+              className="text-4xl md:text-5xl font-light mb-8 leading-snug text-white"
               style={{ fontFamily: 'Cormorant Garamond, serif' }}
             >
-              Island Soul.<br />Seaside Rhythm.
+              Island Soul. Seaside Rhythm.
             </h2>
-            <div className="space-y-5 text-gray-600 text-lg leading-relaxed font-light">
+            <div className="space-y-5 text-white/70 text-base leading-relaxed font-light">
               <p>
                 A design-forward beachfront hotel in Chios combining private suites and vibrant beach culture,
                 where modern comfort and coastal rhythm shape a new way of living well by the sea.
@@ -105,17 +105,18 @@ const Hotel = () => {
               <p>
                 Here, each day unfolds with natural ease. Mornings begin with light, sea air, and slow rituals
                 of care. Afternoons move between the beach, the pool, and shared tables. Evenings gather around
-                cocktails, music, and the warmth of island life.
-              </p>
-              <p>
-                Saint Fire Hotel creates a way of living that feels open, social, and grounded in place.
+                cocktails, music, and the warmth of island life. Saint Fire Hotel creates a way of living that
+                feels open, social, and grounded in place.
               </p>
             </div>
           </div>
-          {/* Images */}
-          <div className="grid grid-cols-2 gap-4">
-            <img src={WIX.img13} alt="Saint Fire Hotel suite" className="w-full aspect-[3/4] object-cover" />
-            <img src={WIX.img9}  alt="Saint Fire Hotel pool" className="w-full aspect-[3/4] object-cover mt-10" />
+          {/* Framed image */}
+          <div style={{ padding: '12px', backgroundColor: '#fff' }}>
+            <img
+              src={WIX.img13}
+              alt="Saint Fire Hotel suite"
+              className="w-full aspect-video object-cover"
+            />
           </div>
         </div>
       </div>
