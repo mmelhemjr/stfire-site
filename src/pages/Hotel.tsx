@@ -54,7 +54,7 @@ const Hotel = () => {
         {/* Image side — floats from top */}
         <div className="relative">
           <img
-            src={WIX.img11}
+            src={WIX.img4}
             alt="Saint Fire Hotel suite interior"
             className="w-full h-full object-cover"
             style={{ minHeight: '400px' }}
@@ -67,7 +67,7 @@ const Hotel = () => {
         {/* Large bedroom image */}
         <div>
           <img
-            src={WIX.img4}
+            src={WIX.img11}
             alt="Saint Fire Hotel bedroom"
             className="w-full object-cover"
             style={{ minHeight: '560px', maxHeight: '700px' }}
