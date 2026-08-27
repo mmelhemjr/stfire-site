@@ -19,57 +19,57 @@ const Collection = () => {
   return (
     <div style={{ backgroundColor: '#F8F4EF', ...BODY }}>
 
-      {/* ── Hotel Section ── */}
-      <div className="relative h-screen min-h-[600px]">
-        <img
-          src={IMG.hotelBg}
-          alt="Saint Fire Hotel"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-        <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-6">
-          <img
-            src={IMG.hotelLogo}
-            alt="Saint Fire Hotel"
-            className="w-64 md:w-80 object-contain"
-            style={{ filter: 'brightness(0) invert(1)' }}
-          />
-          <Link
-            to="/hotel"
-            className="text-xs tracking-widest uppercase text-white border border-white/80 px-10 py-3 hover:bg-white hover:text-black transition-colors"
-            style={{ letterSpacing: '0.25em' }}
-          >
-            Take a Look
-          </Link>
-          <p className="text-white/60 text-xs tracking-widest uppercase" style={{ letterSpacing: '0.25em' }}>
-            Coming Summer 2027
-          </p>
-        </div>
-      </div>
+      {/* ── Hotel + Restaurant side by side ── */}
+      <div className="flex h-screen min-h-[600px]">
 
-      {/* ── Restaurant Section ── */}
-      <div className="relative h-screen min-h-[600px]">
-        <img
-          src={IMG.restaurantBg}
-          alt="Saint Fire Seaside Restaurant & Bar"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-        <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-6">
-          <img
-            src={IMG.restaurantLogo}
-            alt="Saint Fire Seaside Restaurant & Bar"
-            className="w-64 md:w-80 object-contain"
-            style={{ filter: 'brightness(0) invert(1)' }}
-          />
-          <Link
-            to="/home"
-            className="text-xs tracking-widest uppercase text-white border border-white/80 px-10 py-3 hover:bg-white hover:text-black transition-colors"
-            style={{ letterSpacing: '0.25em' }}
-          >
-            Visit the Website
-          </Link>
+        {/* Hotel */}
+        <div className="relative w-1/2">
+          <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
+          <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-8">
+            <img
+              src={IMG.hotelLogo}
+              alt="Saint Fire Hotel"
+              className="w-52 md:w-64 object-contain"
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
+            <Link
+              to="/hotel"
+              className="text-xs text-white border border-white/80 px-8 py-3 hover:bg-white hover:text-black transition-colors"
+              style={{ letterSpacing: '0.25em' }}
+            >
+              TAKE A LOOK
+            </Link>
+            <p className="text-white/60 text-xs" style={{ letterSpacing: '0.25em' }}>
+              COMING SUMMER 2027
+            </p>
+          </div>
         </div>
+
+        {/* Divider */}
+        <div className="w-px bg-white/30 z-10" />
+
+        {/* Restaurant */}
+        <div className="relative w-1/2">
+          <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
+          <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-8">
+            <img
+              src={IMG.restaurantLogo}
+              alt="Saint Fire Seaside Restaurant & Bar"
+              className="w-52 md:w-64 object-contain"
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
+            <Link
+              to="/home"
+              className="text-xs text-white border border-white/80 px-8 py-3 hover:bg-white hover:text-black transition-colors"
+              style={{ letterSpacing: '0.25em' }}
+            >
+              VISIT THE WEBSITE
+            </Link>
+          </div>
+        </div>
+
       </div>
 
       {/* ── Editorial ── */}
