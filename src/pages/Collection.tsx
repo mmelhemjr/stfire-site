@@ -23,7 +23,7 @@ const Collection = () => {
       <div className="flex flex-col md:flex-row md:h-screen">
 
         {/* Hotel */}
-        <div className="relative w-full md:w-1/2 md:h-full" style={{ height: '65vh' }}>
+        <div className="relative w-full md:w-1/2 h-[65vh] md:h-full">
           <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
@@ -41,7 +41,7 @@ const Collection = () => {
         <div className="md:w-px md:h-auto h-px w-full bg-white/30 z-10" />
 
         {/* Restaurant */}
-        <div className="relative w-full md:w-1/2 md:h-full" style={{ height: '65vh' }}>
+        <div className="relative w-full md:w-1/2 h-[65vh] md:h-full">
           <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
