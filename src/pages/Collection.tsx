@@ -19,16 +19,16 @@ const Collection = () => {
   return (
     <div style={{ backgroundColor: '#F8F4EF', ...BODY }}>
 
-      {/* ── Hotel + Restaurant side by side ── */}
-      <div className="flex h-screen min-h-[600px]">
+      {/* ── Hotel + Restaurant: stacked on mobile, side by side on desktop ── */}
+      <div className="flex flex-col md:flex-row md:h-screen">
 
         {/* Hotel */}
-        <div className="relative w-1/2">
+        <div className="relative w-full md:w-1/2" style={{ height: '65vh' }}>
           <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-            <div className="flex items-end justify-center mb-6" style={{ height: '150px' }}>
-              <img src={IMG.hotelLogo} alt="Saint Fire Hotel" style={{ filter: 'brightness(0) invert(1)', maxHeight: '150px', maxWidth: '220px', objectFit: 'contain' }} />
+            <div className="flex items-end justify-center mb-6" style={{ height: '130px' }}>
+              <img src={IMG.hotelLogo} alt="Saint Fire Hotel" style={{ filter: 'brightness(0) invert(1)', maxHeight: '130px', maxWidth: '200px', objectFit: 'contain' }} />
             </div>
             <Link to="/hotel" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               TAKE A LOOK
@@ -37,21 +37,20 @@ const Collection = () => {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="w-px bg-white/30 z-10" />
+        {/* Divider — horizontal on mobile, vertical on desktop */}
+        <div className="md:w-px md:h-auto h-px w-full bg-white/30 z-10" />
 
         {/* Restaurant */}
-        <div className="relative w-1/2">
+        <div className="relative w-full md:w-1/2" style={{ height: '65vh' }}>
           <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-            <div className="flex items-end justify-center mb-6" style={{ height: '150px' }}>
-              <img src={IMG.restaurantLogo} alt="Saint Fire Restaurant" style={{ filter: 'brightness(0) invert(1)', maxHeight: '150px', maxWidth: '220px', objectFit: 'contain' }} />
+            <div className="flex items-end justify-center mb-6" style={{ height: '130px' }}>
+              <img src={IMG.restaurantLogo} alt="Saint Fire Restaurant" style={{ filter: 'brightness(0) invert(1)', maxHeight: '130px', maxWidth: '200px', objectFit: 'contain' }} />
             </div>
             <Link to="/home" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               VISIT THE WEBSITE
             </Link>
-            {/* Same height as "COMING SUMMER 2027" to keep vertical symmetry */}
             <p className="text-xs whitespace-nowrap" style={{ letterSpacing: '0.22em', color: 'transparent' }}>COMING SUMMER 2027</p>
           </div>
         </div>
