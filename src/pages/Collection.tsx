@@ -27,8 +27,8 @@ const Collection = () => {
           <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-            <div className="flex items-end justify-center mb-6" style={{ height: '130px' }}>
-              <img src={IMG.hotelLogo} alt="Saint Fire Hotel" style={{ filter: 'brightness(0) invert(1)', maxHeight: '130px', maxWidth: '200px', objectFit: 'contain' }} />
+            <div className="flex items-end justify-center mb-6 h-[130px] md:h-[200px]">
+              <img src={IMG.hotelLogo} alt="Saint Fire Hotel" className="max-h-[130px] md:max-h-[200px] max-w-[200px] md:max-w-[300px] object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
             </div>
             <Link to="/hotel" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               TAKE A LOOK
@@ -45,8 +45,8 @@ const Collection = () => {
           <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-            <div className="flex items-end justify-center mb-6" style={{ height: '130px' }}>
-              <img src={IMG.restaurantLogo} alt="Saint Fire Restaurant" style={{ filter: 'brightness(0) invert(1)', maxHeight: '130px', maxWidth: '200px', objectFit: 'contain' }} />
+            <div className="flex items-end justify-center mb-6 h-[130px] md:h-[200px]">
+              <img src={IMG.restaurantLogo} alt="Saint Fire Restaurant" className="max-h-[130px] md:max-h-[200px] max-w-[200px] md:max-w-[300px] object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
             </div>
             <Link to="/home" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               VISIT THE WEBSITE
