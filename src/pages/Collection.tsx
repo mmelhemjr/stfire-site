@@ -72,39 +72,41 @@ const Collection = () => {
 
       </div>
 
-      {/* ── Editorial ── */}
-      <div className="max-w-3xl mx-auto px-8 py-28 text-center">
-        <h2
-          className="text-4xl md:text-5xl font-light mb-10 leading-snug"
-          style={{ ...DISPLAY, color: '#1A1A1A' }}
-        >
-          Enter the world<br />of Saint Fire
-        </h2>
-        <div className="space-y-6 text-base leading-relaxed font-light" style={{ color: '#555' }}>
-          <p>
-            Saint Fire began as a seaside experience in Chios — a place for sunlit lunches, golden-hour
-            drinks, music and the rhythm of summer by the water.
-          </p>
-          <p>Now, that world is expanding.</p>
-          <p>
-            The Saint Fire Collection brings together the existing Seaside Restaurant &amp; Bar with the
-            upcoming Beachfront Lifestyle Hotel, creating a complete coastal destination shaped by design,
-            shared moments and a new way of living well by the sea.
-          </p>
-          <p>
-            The first chapter is already here.<br />
-            The new chapter arrives in Summer 2027.
-          </p>
+      {/* ── Editorial: text left, image right ── */}
+      <div className="grid md:grid-cols-2 min-h-[520px]">
+        <div className="flex flex-col justify-center px-14 py-20">
+          <h2
+            className="text-4xl md:text-5xl font-light mb-10 leading-snug"
+            style={{ ...DISPLAY, color: '#1C2040' }}
+          >
+            Enter the world<br />of Saint Fire
+          </h2>
+          <div className="space-y-5 text-base leading-relaxed font-light" style={{ color: '#555' }}>
+            <p>
+              Saint Fire began as a seaside experience in Chios — a place for sunlit lunches, golden-hour
+              drinks, music and the rhythm of summer by the water.
+            </p>
+            <p>Now, that world is expanding.</p>
+            <p>
+              The Saint Fire Collection brings together the existing Seaside Restaurant &amp; Bar with the
+              upcoming Beachfront Lifestyle Hotel, creating a complete coastal destination shaped by design,
+              shared moments and a new way of living well by the sea.
+            </p>
+            <p>
+              The first chapter is already here.<br />
+              The new chapter arrives in Summer 2027.
+            </p>
+          </div>
+        </div>
+        <div>
+          <img
+            src={IMG.editorial}
+            alt="Saint Fire Collection"
+            className="w-full h-full object-cover"
+            style={{ minHeight: '480px' }}
+          />
         </div>
       </div>
-
-      {/* ── Editorial image ── */}
-      <img
-        src={IMG.editorial}
-        alt="Saint Fire Collection"
-        className="w-full object-cover"
-        style={{ height: '55vh' }}
-      />
 
       {/* ── Be the First to Stay ── */}
       <div className="py-24 px-8 text-center" style={{ backgroundColor: '#EDE8DC' }}>
