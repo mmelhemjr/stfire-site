@@ -27,28 +27,13 @@ const Hotel = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.30)' }} />
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 gap-3">
-          {/* Flame logo icon */}
+        <div className="relative h-full flex items-center justify-center">
           <img
-            src="https://imgur.com/897KeEZ.jpg"
-            alt="Saint Fire flame"
-            className="h-20 object-contain mb-2"
+            src="https://static.wixstatic.com/media/06c297_f1e1e170f0974f1b8063a727a9a8e1bf~mv2.png"
+            alt="Saint Fire Beachfront Lifestyle Hotel Chios"
+            className="w-[480px] max-w-[85vw] object-contain"
             style={{ filter: 'brightness(0) invert(1)' }}
           />
-          {/* Brand name */}
-          <h1
-            className="text-6xl md:text-8xl font-light text-white leading-none"
-            style={{ fontFamily: 'Cormorant Garamond, serif', letterSpacing: '0.15em' }}
-          >
-            SAINT FIRE
-          </h1>
-          {/* Tagline */}
-          <p
-            className="text-white/85 text-xs md:text-sm font-light mt-1"
-            style={{ letterSpacing: '0.35em' }}
-          >
-            BEACHFRONT LIFESTYLE HOTEL&nbsp;&nbsp;|&nbsp;&nbsp;CHIOS
-          </p>
         </div>
       </div>
 
@@ -76,7 +61,7 @@ const Hotel = () => {
         </p>
         <h2
           className="text-4xl md:text-5xl font-light mb-12 leading-snug"
-          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+          style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif" }}
         >
           The Next Chapter of<br />the Saint Fire Collection
         </h2>
@@ -111,7 +96,7 @@ const Hotel = () => {
           <div>
             <h2
               className="text-4xl md:text-5xl font-light mb-8 leading-snug text-white"
-              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+              style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif" }}
             >
               Island Soul. Seaside Rhythm.
             </h2>
@@ -146,7 +131,7 @@ const Hotel = () => {
       >
         <h2
           className="text-4xl md:text-5xl font-light mb-4"
-          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+          style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif" }}
         >
           Be the First to Know
         </h2>
