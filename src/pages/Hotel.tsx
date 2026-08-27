@@ -43,9 +43,9 @@ const Hotel = () => {
         <div className="flex flex-col justify-start px-14 py-16 md:py-20">
           <h2
             className="text-5xl md:text-6xl font-light mb-6 leading-tight"
-            style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A' }}
-          >
-            Coming Summer 2027
+          style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A', fontVariantNumeric: 'lining-nums', fontFeatureSettings: '"lnum" 1' }}
+        >
+          Coming Summer 2027
           </h2>
           <p className="text-base font-light leading-relaxed max-w-sm" style={{ color: '#555' }}>
             A vibrant beachfront lifestyle hotel in Chios, where life by the sea introduces a new form of wellbeing.
