@@ -141,6 +141,14 @@ const Hotel = () => {
         </div>
       </div>
 
+      {/* ── Full-width pool image below Island Soul ── */}
+      <img
+        src={WIX.img9}
+        alt="Saint Fire Hotel pool and terrace"
+        className="w-full object-cover"
+        style={{ height: '55vh' }}
+      />
+
       {/* ── Be the First to Know ── */}
       <div
         className="py-24 px-8 text-center"
