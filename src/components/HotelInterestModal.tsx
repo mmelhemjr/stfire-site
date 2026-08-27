@@ -186,7 +186,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                   <input type="text" name="country" value={form.country} onChange={handleChange} placeholder="e.g. Greece, United States" style={INPUT_STYLE} />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label style={LABEL_STYLE}>Check-in <span style={{ color: '#aaa', fontSize: '10px' }}>(optional)</span></label>
                     <input
