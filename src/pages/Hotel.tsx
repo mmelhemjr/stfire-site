@@ -47,7 +47,7 @@ const Hotel = () => {
         >
           Coming Summer <span style={{ fontWeight: 700 }}>2027</span>
           </h2>
-          <p className="text-base font-light leading-relaxed max-w-sm" style={{ color: '#555' }}>
+          <p className="text-base font-light leading-relaxed max-w-sm" style={{ color: '#555', fontFamily: "SaintFireBody, Inter, sans-serif" }}>
             A vibrant beachfront lifestyle hotel in Chios, where life by the sea introduces a new form of wellbeing.
           </p>
         </div>
