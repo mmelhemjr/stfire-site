@@ -26,12 +26,12 @@ const Collection = () => {
         <div className="relative w-1/2">
           <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-          <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-8">
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-8" style={{ gap: '20px' }}>
             <img
               src={IMG.hotelLogo}
               alt="Saint Fire Hotel"
-              className="w-52 md:w-64 object-contain"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              className="object-contain"
+              style={{ filter: 'brightness(0) invert(1)', height: '140px', width: 'auto' }}
             />
             <Link
               to="/hotel"
@@ -53,12 +53,12 @@ const Collection = () => {
         <div className="relative w-1/2">
           <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-          <div className="relative h-full flex flex-col items-center justify-center text-center gap-6 px-8">
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-8" style={{ gap: '20px' }}>
             <img
               src={IMG.restaurantLogo}
               alt="Saint Fire Seaside Restaurant & Bar"
-              className="w-52 md:w-64 object-contain"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              className="object-contain"
+              style={{ filter: 'brightness(0) invert(1)', height: '140px', width: 'auto' }}
             />
             <Link
               to="/home"
@@ -67,6 +67,10 @@ const Collection = () => {
             >
               VISIT THE WEBSITE
             </Link>
+            {/* Spacer to match hotel side's "Coming Summer 2027" line height */}
+            <p className="text-transparent text-xs select-none" style={{ letterSpacing: '0.25em' }}>
+              &nbsp;
+            </p>
           </div>
         </div>
 
