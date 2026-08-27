@@ -105,7 +105,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="relative w-full max-w-lg max-h-[95vh] overflow-y-auto shadow-2xl"
         style={{ backgroundColor: '#F8F4EF' }}
       >
         {/* Close button */}
@@ -117,7 +117,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="p-10">
+        <div className="p-5 md:p-10">
           {submitted ? (
             /* ── Success ── */
             <div className="text-center py-8">
@@ -147,7 +147,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
           ) : (
             /* ── Form ── */
             <>
-              <div className="mb-8">
+              <div className="mb-4 md:mb-8">
                 <p
                   className="text-xs tracking-widest uppercase mb-4"
                   style={{ color: '#888', letterSpacing: '0.25em', fontFamily: "SaintFireBody, Inter, sans-serif" }}
@@ -155,17 +155,17 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                   Saint Fire Hotel · Coming Summer 2027
                 </p>
                 <h2
-                  className="text-3xl font-light mb-3"
+                  className="text-2xl md:text-3xl font-light mb-2 md:mb-3"
                   style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1C2040' }}
                 >
                   Join the Flame
                 </h2>
-                <p className="text-sm leading-relaxed" style={{ color: '#666', fontFamily: "SaintFireBody, Inter, sans-serif" }}>
+                <p className="text-sm leading-relaxed hidden md:block" style={{ color: '#666', fontFamily: "SaintFireBody, Inter, sans-serif" }}>
                   Be among the first to experience Saint Fire Hotel. Join our priority list for exclusive updates, early access, and special offers.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-3 md:space-y-5">
                 <div>
                   <label style={LABEL_STYLE}>Full Name <span style={{ color: '#1C2040' }}>*</span></label>
                   <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Your name" style={INPUT_STYLE} />
@@ -217,7 +217,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                     name="comments"
                     value={form.comments}
                     onChange={handleChange}
-                    rows={3}
+                    rows={2}
                     placeholder="Any questions or special requests..."
                     style={{ ...INPUT_STYLE, resize: 'none' }}
                   />
