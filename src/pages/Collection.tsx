@@ -26,23 +26,14 @@ const Collection = () => {
         <div className="relative w-1/2">
           <img src={IMG.hotelBg} alt="Saint Fire Hotel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-          <div className="relative h-full flex flex-col items-center justify-center text-center px-8" style={{ gap: '20px' }}>
-            <img
-              src={IMG.hotelLogo}
-              alt="Saint Fire Hotel"
-              className="object-contain"
-              style={{ filter: 'brightness(0) invert(1)', height: '140px', width: 'auto' }}
-            />
-            <Link
-              to="/hotel"
-              className="text-xs text-white border border-white/80 px-8 py-3 hover:bg-white hover:text-black transition-colors"
-              style={{ letterSpacing: '0.25em' }}
-            >
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+            <div className="flex items-end justify-center mb-6" style={{ height: '150px' }}>
+              <img src={IMG.hotelLogo} alt="Saint Fire Hotel" style={{ filter: 'brightness(0) invert(1)', maxHeight: '150px', maxWidth: '220px', objectFit: 'contain' }} />
+            </div>
+            <Link to="/hotel" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               TAKE A LOOK
             </Link>
-            <p className="text-white/60 text-xs" style={{ letterSpacing: '0.25em' }}>
-              COMING SUMMER 2027
-            </p>
+            <p className="text-white/60 text-xs whitespace-nowrap" style={{ letterSpacing: '0.22em' }}>COMING SUMMER 2027</p>
           </div>
         </div>
 
@@ -53,24 +44,15 @@ const Collection = () => {
         <div className="relative w-1/2">
           <img src={IMG.restaurantBg} alt="Saint Fire Seaside Restaurant & Bar" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.38)' }} />
-          <div className="relative h-full flex flex-col items-center justify-center text-center px-8" style={{ gap: '20px' }}>
-            <img
-              src={IMG.restaurantLogo}
-              alt="Saint Fire Seaside Restaurant & Bar"
-              className="object-contain"
-              style={{ filter: 'brightness(0) invert(1)', height: '140px', width: 'auto' }}
-            />
-            <Link
-              to="/home"
-              className="text-xs text-white border border-white/80 px-8 py-3 hover:bg-white hover:text-black transition-colors"
-              style={{ letterSpacing: '0.25em' }}
-            >
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+            <div className="flex items-end justify-center mb-6" style={{ height: '150px' }}>
+              <img src={IMG.restaurantLogo} alt="Saint Fire Restaurant" style={{ filter: 'brightness(0) invert(1)', maxHeight: '150px', maxWidth: '220px', objectFit: 'contain' }} />
+            </div>
+            <Link to="/home" className="whitespace-nowrap text-xs text-white border border-white/80 px-6 py-3 hover:bg-white hover:text-black transition-colors mb-4" style={{ letterSpacing: '0.22em' }}>
               VISIT THE WEBSITE
             </Link>
-            {/* Spacer to match hotel side's "Coming Summer 2027" line height */}
-            <p className="text-transparent text-xs select-none" style={{ letterSpacing: '0.25em' }}>
-              &nbsp;
-            </p>
+            {/* Same height as "COMING SUMMER 2027" to keep vertical symmetry */}
+            <p className="text-xs whitespace-nowrap" style={{ letterSpacing: '0.22em', color: 'transparent' }}>COMING SUMMER 2027</p>
           </div>
         </div>
 
