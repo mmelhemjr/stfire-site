@@ -23,19 +23,31 @@ const Hotel = () => {
       <div className="relative h-screen min-h-[600px]">
         <img
           src={WIX.hero}
-          alt="Saint Fire Hotel – Coming Summer 2027"
+          alt="Saint Fire Hotel pool terrace"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.35)' }} />
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.30)' }} />
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 gap-3">
+          {/* Flame logo icon */}
+          <img
+            src="https://imgur.com/897KeEZ.jpg"
+            alt="Saint Fire flame"
+            className="h-20 object-contain mb-2"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
+          {/* Brand name */}
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight"
-            style={{ fontFamily: 'Cormorant Garamond, serif', letterSpacing: '0.02em' }}
+            className="text-6xl md:text-8xl font-light text-white leading-none"
+            style={{ fontFamily: 'Cormorant Garamond, serif', letterSpacing: '0.15em' }}
           >
-            Coming Summer 2027
+            SAINT FIRE
           </h1>
-          <p className="text-white/80 text-lg md:text-xl max-w-2xl leading-relaxed font-light tracking-wide">
-            A vibrant beachfront lifestyle hotel in Chios, where life by the sea introduces a new form of wellbeing.
+          {/* Tagline */}
+          <p
+            className="text-white/85 text-xs md:text-sm font-light mt-1"
+            style={{ letterSpacing: '0.35em' }}
+          >
+            BEACHFRONT LIFESTYLE HOTEL&nbsp;&nbsp;|&nbsp;&nbsp;CHIOS
           </p>
         </div>
       </div>
@@ -54,8 +66,14 @@ const Hotel = () => {
         />
       </div>
 
-      {/* ── The Next Chapter ── */}
+      {/* ── Coming Summer 2027 + The Next Chapter ── */}
       <div className="max-w-3xl mx-auto px-8 py-24 text-center">
+        <p
+          className="text-sm font-light mb-6"
+          style={{ letterSpacing: '0.3em', color: '#888' }}
+        >
+          COMING SUMMER 2027
+        </p>
         <h2
           className="text-4xl md:text-5xl font-light mb-12 leading-snug"
           style={{ fontFamily: 'Cormorant Garamond, serif' }}
