@@ -178,6 +178,19 @@ const Hotel = () => {
         </button>
       </div>
 
+      {/* ── Navy brand footer ── */}
+      <div
+        className="flex items-center justify-center py-14"
+        style={{ backgroundColor: '#1C2040' }}
+      >
+        <img
+          src="https://static.wixstatic.com/media/06c297_f1e1e170f0974f1b8063a727a9a8e1bf~mv2.png"
+          alt="Saint Fire Beachfront Lifestyle Hotel Chios"
+          className="w-56 object-contain"
+          style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+        />
+      </div>
+
       <HotelInterestModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
