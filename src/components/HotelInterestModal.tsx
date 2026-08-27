@@ -12,7 +12,7 @@ const INPUT_STYLE: React.CSSProperties = {
   backgroundColor: '#F0EBE3',
   border: '1px solid #D5CEC4',
   padding: '12px 16px',
-  color: '#1A1A1A',
+  color: '#1C2040',
   fontSize: '14px',
   fontFamily: "SaintFireBody, Inter, sans-serif",
   outline: 'none',
@@ -112,7 +112,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
         <button
           onClick={onClose}
           className="absolute top-5 right-5 z-10 transition-opacity hover:opacity-60"
-          style={{ color: '#1A1A1A' }}
+          style={{ color: '#1C2040' }}
         >
           <X className="h-5 w-5" />
         </button>
@@ -129,7 +129,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
               </p>
               <h2
                 className="text-3xl font-light mb-4"
-                style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A' }}
+                style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1C2040' }}
               >
                 You're on the List
               </h2>
@@ -139,7 +139,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
               <button
                 onClick={onClose}
                 className="px-10 py-3 text-xs tracking-widest uppercase transition-opacity hover:opacity-70"
-                style={{ backgroundColor: '#1A1A1A', color: '#F8F4EF', letterSpacing: '0.2em', fontFamily: "SaintFireBody, Inter, sans-serif" }}
+                style={{ backgroundColor: '#1C2040', color: '#F8F4EF', letterSpacing: '0.2em', fontFamily: "SaintFireBody, Inter, sans-serif" }}
               >
                 Close
               </button>
@@ -156,7 +156,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                 </p>
                 <h2
                   className="text-3xl font-light mb-3"
-                  style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A' }}
+                  style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1C2040' }}
                 >
                   Join the Flame
                 </h2>
@@ -167,12 +167,12 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label style={LABEL_STYLE}>Full Name <span style={{ color: '#1A1A1A' }}>*</span></label>
+                  <label style={LABEL_STYLE}>Full Name <span style={{ color: '#1C2040' }}>*</span></label>
                   <input type="text" name="name" value={form.name} onChange={handleChange} required placeholder="Your name" style={INPUT_STYLE} />
                 </div>
 
                 <div>
-                  <label style={LABEL_STYLE}>Email Address <span style={{ color: '#1A1A1A' }}>*</span></label>
+                  <label style={LABEL_STYLE}>Email Address <span style={{ color: '#1C2040' }}>*</span></label>
                   <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder="your@email.com" style={INPUT_STYLE} />
                 </div>
 
@@ -229,7 +229,7 @@ const HotelInterestModal = ({ isOpen, onClose }: HotelInterestModalProps) => {
                   type="submit"
                   disabled={loading}
                   className="w-full py-4 text-xs tracking-widest uppercase transition-opacity hover:opacity-70 disabled:opacity-40 mt-2"
-                  style={{ backgroundColor: '#1A1A1A', color: '#F8F4EF', letterSpacing: '0.2em', fontFamily: "SaintFireBody, Inter, sans-serif" }}
+                  style={{ backgroundColor: '#1C2040', color: '#F8F4EF', letterSpacing: '0.2em', fontFamily: "SaintFireBody, Inter, sans-serif" }}
                 >
                   {loading ? 'Joining...' : 'Join the Flame'}
                 </button>
