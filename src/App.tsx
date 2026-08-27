@@ -5,6 +5,7 @@ import { ThemeContext, Theme, useTheme } from './lib/theme';
 import { AuthContext, useAuth } from './lib/auth';
 import { supabase } from './lib/supabase';
 import Navbar from './components/Navbar';
+import Collection from './pages/Collection';
 import Home from './pages/Home';
 import OurStory from './pages/OurStory';
 import Restaurant from './pages/Restaurant';
@@ -39,13 +40,16 @@ function AppContent() {
     trackPageView();
   }, [location.pathname, user]);
 
+  const isCollection = location.pathname === '/';
+
   return (
     <div className={`min-h-screen transition-colors ${
       theme === 'dark' ? 'bg-sf-black text-white' : 'bg-white text-sf-black'
     }`}>
-      <Navbar />
+      {!isCollection && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Collection />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/our-story" element={<OurStory />} />
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/beach-club" element={<BeachClub />} />
