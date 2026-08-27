@@ -167,12 +167,12 @@ const Hotel = () => {
           onClick={() => setModalOpen(true)}
           className="px-12 py-4 text-sm tracking-widest uppercase font-medium transition-colors"
           style={{
-            backgroundColor: '#1A1A1A',
+            backgroundColor: '#1C2040',
             color: '#F8F4EF',
             letterSpacing: '0.2em',
           }}
-          onMouseOver={e => (e.currentTarget.style.backgroundColor = '#333')}
-          onMouseOut={e => (e.currentTarget.style.backgroundColor = '#1A1A1A')}
+          onMouseOver={e => (e.currentTarget.style.backgroundColor = '#2a2f5a')}
+          onMouseOut={e => (e.currentTarget.style.backgroundColor = '#1C2040')}
         >
           Join the Flame
         </button>
