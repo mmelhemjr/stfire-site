@@ -37,47 +37,64 @@ const Hotel = () => {
         </div>
       </div>
 
-      {/* ── Two images ── */}
-      <div className="grid grid-cols-2">
-        <img
-          src={WIX.img4}
-          alt="Saint Fire Hotel exterior"
-          className="w-full aspect-video object-cover"
-        />
-        <img
-          src={WIX.img11}
-          alt="Saint Fire Hotel pool area"
-          className="w-full aspect-video object-cover"
-        />
+      {/* ── Section 1: Coming Summer 2027 (left) + render (right) ── */}
+      <div className="grid md:grid-cols-[3fr_2fr] min-h-[520px]">
+        {/* Text side */}
+        <div className="flex flex-col justify-start px-14 py-16 md:py-20">
+          <h2
+            className="text-5xl md:text-6xl font-light mb-6 leading-tight"
+            style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A' }}
+          >
+            Coming Summer 2027
+          </h2>
+          <p className="text-base font-light leading-relaxed max-w-sm" style={{ color: '#555' }}>
+            A vibrant beachfront lifestyle hotel in Chios, where life by the sea introduces a new form of wellbeing.
+          </p>
+        </div>
+        {/* Image side — floats from top */}
+        <div className="relative">
+          <img
+            src={WIX.img11}
+            alt="Saint Fire Hotel suite interior"
+            className="w-full h-full object-cover"
+            style={{ minHeight: '400px' }}
+          />
+        </div>
       </div>
 
-      {/* ── Coming Summer 2027 + The Next Chapter ── */}
-      <div className="max-w-3xl mx-auto px-8 py-24 text-center">
-        <p
-          className="text-sm font-light mb-6"
-          style={{ letterSpacing: '0.3em', color: '#888' }}
-        >
-          COMING SUMMER 2027
-        </p>
-        <h2
-          className="text-4xl md:text-5xl font-light mb-12 leading-snug"
-          style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif" }}
-        >
-          The Next Chapter of<br />the Saint Fire Collection
-        </h2>
-        <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
-          <p>
-            The new addition to Saint Fire Collection introduces a contemporary beachfront hotel in Chios,
-            expanding the spirit of Saint Fire Seaside Restaurant &amp; Bar into a fuller way of staying.
-          </p>
-          <p>
-            Rooted in the island's coastline and shaped by its deep relationship with the water, the hotel
-            brings together design, hospitality, gastronomy, and social energy into one complete coastal destination.
-          </p>
-          <p>
-            It is a new chapter for Saint Fire, created for guests who want to experience the island through
-            comfort, atmosphere, taste, and the generous simplicity of life by the sea.
-          </p>
+      {/* ── Section 2: Bedroom render (left) + The Next Chapter text (right) ── */}
+      <div className="grid md:grid-cols-[3fr_2fr]">
+        {/* Large bedroom image */}
+        <div>
+          <img
+            src={WIX.img4}
+            alt="Saint Fire Hotel bedroom"
+            className="w-full object-cover"
+            style={{ minHeight: '560px', maxHeight: '700px' }}
+          />
+        </div>
+        {/* Text side */}
+        <div className="flex flex-col justify-center px-12 py-16" style={{ backgroundColor: '#EDE8DC' }}>
+          <h2
+            className="text-3xl md:text-4xl font-light mb-8 leading-snug"
+            style={{ fontFamily: "SaintFireDisplay, 'Cormorant Garamond', serif", color: '#1A1A1A' }}
+          >
+            The Next Chapter of<br />the Saint Fire Collection
+          </h2>
+          <div className="space-y-5 text-base leading-relaxed font-light" style={{ color: '#444' }}>
+            <p>
+              The new addition to Saint Fire Collection introduces a contemporary beachfront hotel in Chios,
+              expanding the spirit of Saint Fire Seaside Restaurant &amp; Bar into a fuller way of staying.
+            </p>
+            <p>
+              Rooted in the island's coastline and shaped by its deep relationship with the water, the hotel
+              brings together design, hospitality, gastronomy, and social energy into one complete coastal destination.
+            </p>
+            <p>
+              It is a new chapter for Saint Fire, created for guests who want to experience the island through
+              comfort, atmosphere, taste, and the generous simplicity of life by the sea.
+            </p>
+          </div>
         </div>
       </div>
 
