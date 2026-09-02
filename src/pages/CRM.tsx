@@ -267,8 +267,42 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
     ? Math.round(stayLengths.reduce((a, b) => a + b, 0) / stayLengths.length)
     : null;
 
+  // ── Country normalisation map ────────────────────────────────────────────────
+  const COUNTRY_ALIASES: Record<string, string> = {
+    // United States
+    'usa': 'United States', 'u.s.a.': 'United States', 'u.s.': 'United States',
+    'us': 'United States', 'united states': 'United States',
+    'united states of america': 'United States', 'america': 'United States',
+    // Turkey
+    'turkey': 'Turkey', 'türkiye': 'Turkey', 'turkiye': 'Turkey',
+    'turkei': 'Turkey', 'turquie': 'Turkey', 'tr': 'Turkey',
+    // Greece
+    'greece': 'Greece', 'hellas': 'Greece', 'gr': 'Greece', 'ελλάδα': 'Greece', 'ellada': 'Greece',
+    // UK
+    'uk': 'United Kingdom', 'united kingdom': 'United Kingdom',
+    'great britain': 'United Kingdom', 'england': 'United Kingdom',
+    'britain': 'United Kingdom', 'gb': 'United Kingdom',
+    // Germany
+    'germany': 'Germany', 'deutschland': 'Germany', 'de': 'Germany',
+    // France
+    'france': 'France', 'fr': 'France',
+    // Italy
+    'italy': 'Italy', 'italia': 'Italy', 'it': 'Italy',
+    // Australia
+    'australia': 'Australia', 'aus': 'Australia', 'au': 'Australia',
+    // Canada
+    'canada': 'Canada', 'ca': 'Canada',
+    // India
+    'india': 'India', 'in': 'India',
+  };
+
+  const normalizeCountry = (raw: string): string => {
+    const key = raw.trim().toLowerCase();
+    return COUNTRY_ALIASES[key] ?? raw.trim().replace(/\b\w/g, c => c.toUpperCase());
+  };
+
   const countryCounts = leads.reduce((acc, l) => {
-    const c = l.country?.trim() || 'Unknown';
+    const c = l.country?.trim() ? normalizeCountry(l.country) : 'Unknown';
     acc[c] = (acc[c] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
