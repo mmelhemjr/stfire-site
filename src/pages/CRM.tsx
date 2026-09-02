@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import {
   Search, Trash2, Download, CheckCircle, Circle,
   ChevronUp, ChevronDown, Loader2, AlertCircle, RefreshCw,
-  UtensilsCrossed, Hotel, ShieldCheck, Shield
+  UtensilsCrossed, Hotel, ShieldCheck, Shield, BarChart2
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useTheme } from '../lib/theme';
@@ -247,6 +247,163 @@ function RestaurantCRM({ theme }: { theme: string }) {
   );
 }
 
+// ─── Hotel Analytics ─────────────────────────────────────────────────────────
+
+function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string }) {
+  const cardClass = theme === 'dark' ? 'bg-gray-800/30 border border-gray-700/50' : 'bg-white border border-gray-200';
+
+  // ── Stat Cards ──────────────────────────────────────────────────────────────
+  const total = leads.length;
+  const contacted = leads.filter(l => l.contacted).length;
+
+  const stayLengths = leads
+    .filter(l => l.check_in && l.check_out)
+    .map(l => {
+      const diff = (new Date(l.check_out!).getTime() - new Date(l.check_in!).getTime()) / (1000 * 60 * 60 * 24);
+      return diff;
+    })
+    .filter(d => d > 0);
+  const avgStay = stayLengths.length
+    ? Math.round(stayLengths.reduce((a, b) => a + b, 0) / stayLengths.length)
+    : null;
+
+  const countryCounts = leads.reduce((acc, l) => {
+    const c = l.country?.trim() || 'Unknown';
+    acc[c] = (acc[c] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const topCountry = Object.entries(countryCounts).sort((a, b) => b[1] - a[1])[0];
+
+  // ── Signups per month ────────────────────────────────────────────────────────
+  const signupsByMonth = leads.reduce((acc, l) => {
+    const key = l.created_at.slice(0, 7); // "YYYY-MM"
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const signupMonths = Object.entries(signupsByMonth).sort((a, b) => a[0].localeCompare(b[0]));
+  const maxSignups = Math.max(...signupMonths.map(m => m[1]), 1);
+
+  // ── Check-in month demand ────────────────────────────────────────────────────
+  const checkinByMonth = leads.reduce((acc, l) => {
+    if (!l.check_in) return acc;
+    const key = l.check_in.slice(0, 7);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const checkinMonths = Object.entries(checkinByMonth).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const maxCheckin = Math.max(...checkinMonths.map(m => m[1]), 1);
+
+  // ── Countries ────────────────────────────────────────────────────────────────
+  const topCountries = Object.entries(countryCounts)
+    .filter(([c]) => c !== 'Unknown')
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8);
+  const maxCountry = Math.max(...topCountries.map(c => c[1]), 1);
+
+  // ── Stay length buckets ───────────────────────────────────────────────────────
+  const buckets: Record<string, number> = { '1–3 nights': 0, '4–7 nights': 0, '8–14 nights': 0, '15+ nights': 0 };
+  stayLengths.forEach(d => {
+    if (d <= 3) buckets['1–3 nights']++;
+    else if (d <= 7) buckets['4–7 nights']++;
+    else if (d <= 14) buckets['8–14 nights']++;
+    else buckets['15+ nights']++;
+  });
+  const maxBucket = Math.max(...Object.values(buckets), 1);
+
+  const formatMonth = (ym: string) => {
+    const [y, m] = ym.split('-');
+    return new Date(Number(y), Number(m) - 1).toLocaleString('default', { month: 'short', year: '2-digit' });
+  };
+
+  const StatCard = ({ label, value, sub }: { label: string; value: string | number; sub?: string }) => (
+    <div className={`${cardClass} rounded-xl p-5`}>
+      <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">{label}</p>
+      <p className="text-3xl font-bold text-sf-gold">{value}</p>
+      {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
+    </div>
+  );
+
+  const BarRow = ({ label, value, max, color = 'bg-sf-gold' }: { label: string; value: number; max: number; color?: string }) => (
+    <div className="flex items-center gap-3 text-sm">
+      <span className="w-28 truncate text-gray-300 text-right shrink-0">{label}</span>
+      <div className="flex-1 bg-gray-700/40 rounded-full h-2.5 overflow-hidden">
+        <div className={`${color} h-full rounded-full transition-all`} style={{ width: `${(value / max) * 100}%` }} />
+      </div>
+      <span className="w-6 text-gray-400 text-xs">{value}</span>
+    </div>
+  );
+
+  return (
+    <div className="space-y-8">
+      {/* Stat cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard label="Total Signups" value={total} />
+        <StatCard label="Contacted" value={contacted} sub={total ? `${Math.round((contacted / total) * 100)}% of list` : undefined} />
+        <StatCard label="Avg Stay" value={avgStay !== null ? `${avgStay}d` : '—'} sub={stayLengths.length ? `from ${stayLengths.length} entries` : 'No dates yet'} />
+        <StatCard label="Top Country" value={topCountry ? topCountry[0] : '—'} sub={topCountry ? `${topCountry[1]} signup${topCountry[1] !== 1 ? 's' : ''}` : undefined} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Signups over time */}
+        <div className={`${cardClass} rounded-xl p-6`}>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Signups Over Time</h3>
+          {signupMonths.length === 0 ? (
+            <p className="text-gray-500 text-sm">No data yet</p>
+          ) : (
+            <div className="space-y-3">
+              {signupMonths.map(([month, count]) => (
+                <BarRow key={month} label={formatMonth(month)} value={count} max={maxSignups} color="bg-sf-gold" />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Check-in demand */}
+        <div className={`${cardClass} rounded-xl p-6`}>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Most Requested Check-in Months</h3>
+          {checkinMonths.length === 0 ? (
+            <p className="text-gray-500 text-sm">No check-in dates submitted yet</p>
+          ) : (
+            <div className="space-y-3">
+              {checkinMonths.map(([month, count]) => (
+                <BarRow key={month} label={formatMonth(month)} value={count} max={maxCheckin} color="bg-amber-400" />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Countries */}
+        <div className={`${cardClass} rounded-xl p-6`}>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Top Countries</h3>
+          {topCountries.length === 0 ? (
+            <p className="text-gray-500 text-sm">No country data yet</p>
+          ) : (
+            <div className="space-y-3">
+              {topCountries.map(([country, count]) => (
+                <BarRow key={country} label={country} value={count} max={maxCountry} color="bg-blue-400" />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Stay length distribution */}
+        <div className={`${cardClass} rounded-xl p-6`}>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Stay Length Distribution</h3>
+          {stayLengths.length === 0 ? (
+            <p className="text-gray-500 text-sm">No check-in/out dates submitted yet</p>
+          ) : (
+            <div className="space-y-3">
+              {Object.entries(buckets).map(([label, count]) => (
+                <BarRow key={label} label={label} value={count} max={maxBucket} color="bg-emerald-400" />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Hotel CRM ───────────────────────────────────────────────────────────────
 
 function HotelCRM({ theme }: { theme: string }) {
@@ -258,6 +415,7 @@ function HotelCRM({ theme }: { theme: string }) {
   const [sortField, setSortField] = useState<keyof HotelLead>('created_at');
   const [sortDir, setSortDir] = useState<SortDir>('desc');
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [view, setView] = useState<'list' | 'analytics'>('list');
 
   const cardClass = theme === 'dark' ? 'bg-gray-800/30' : 'bg-white border border-gray-200';
   const inputClass = theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-200 text-gray-900';
@@ -318,6 +476,36 @@ function HotelCRM({ theme }: { theme: string }) {
 
   return (
     <div>
+      {/* View toggle */}
+      <div className="flex gap-2 mb-5">
+        <button
+          onClick={() => setView('list')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
+            view === 'list'
+              ? 'bg-sf-gold text-black'
+              : theme === 'dark' ? 'text-gray-400 hover:text-white hover:bg-gray-700' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+          }`}
+        >
+          <Search className="h-4 w-4" /> List
+        </button>
+        <button
+          onClick={() => setView('analytics')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
+            view === 'analytics'
+              ? 'bg-sf-gold text-black'
+              : theme === 'dark' ? 'text-gray-400 hover:text-white hover:bg-gray-700' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+          }`}
+        >
+          <BarChart2 className="h-4 w-4" /> Analytics
+        </button>
+      </div>
+
+      {view === 'analytics' ? (
+        loading
+          ? <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-sf-gold" /></div>
+          : <HotelAnalytics leads={leads} theme={theme} />
+      ) : (
+      <>
       {/* Toolbar */}
       <div className="flex flex-wrap gap-3 mb-4 items-center justify-between">
         <div className="flex gap-3 flex-wrap items-center">
@@ -463,6 +651,8 @@ function HotelCRM({ theme }: { theme: string }) {
             </table>
           </div>
         </div>
+      )}
+      </>
       )}
     </div>
   );
