@@ -355,44 +355,86 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
   });
   const maxBucket = Math.max(...Object.values(buckets), 1);
 
+  // ── Check-out month demand ────────────────────────────────────────────────────
+  const checkoutByMonth = leads.reduce((acc, l) => {
+    if (!l.check_out) return acc;
+    const key = l.check_out.slice(0, 7);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const checkoutMonths = Object.entries(checkoutByMonth).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const maxCheckout = Math.max(...checkoutMonths.map(m => m[1]), 1);
+
+  // ── This week vs last week ────────────────────────────────────────────────────
+  const now = new Date();
+  const startOfThisWeek = new Date(now); startOfThisWeek.setDate(now.getDate() - now.getDay()); startOfThisWeek.setHours(0,0,0,0);
+  const startOfLastWeek = new Date(startOfThisWeek); startOfLastWeek.setDate(startOfThisWeek.getDate() - 7);
+  const thisWeekCount = leads.filter(l => new Date(l.created_at) >= startOfThisWeek).length;
+  const lastWeekCount = leads.filter(l => new Date(l.created_at) >= startOfLastWeek && new Date(l.created_at) < startOfThisWeek).length;
+  const weekTrend = lastWeekCount === 0 ? null : Math.round(((thisWeekCount - lastWeekCount) / lastWeekCount) * 100);
+
+  // ── No date provided ─────────────────────────────────────────────────────────
+  const noDateCount = leads.filter(l => !l.check_in && !l.check_out).length;
+
+  // ── Latest signup ─────────────────────────────────────────────────────────────
+  const latestSignup = leads.length
+    ? new Date(leads[0].created_at).toLocaleDateString('default', { month: 'short', day: 'numeric', year: 'numeric' })
+    : null;
+
+  // ── Recent signups (last 5) ───────────────────────────────────────────────────
+  const recentSignups = leads.slice(0, 5);
+
   const formatMonth = (ym: string) => {
     const [y, m] = ym.split('-');
     return new Date(Number(y), Number(m) - 1).toLocaleString('default', { month: 'short', year: '2-digit' });
   };
 
-  const StatCard = ({ label, value, sub }: { label: string; value: string | number; sub?: string }) => (
-    <div className={`${cardClass} rounded-xl p-5`}>
-      <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">{label}</p>
-      <p className="text-3xl font-bold text-sf-gold">{value}</p>
+  const StatCard = ({ label, value, sub, trend }: { label: string; value: string | number; sub?: string; trend?: number | null }) => (
+    <div className={`${cardClass} rounded-xl p-4`}>
+      <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 leading-tight">{label}</p>
+      <p className="text-2xl font-bold text-sf-gold break-words">{value}</p>
       {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
+      {trend !== undefined && trend !== null && (
+        <p className={`text-xs mt-1 font-medium ${trend >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+          {trend >= 0 ? '↑' : '↓'} {Math.abs(trend)}% vs last week
+        </p>
+      )}
     </div>
   );
 
   const BarRow = ({ label, value, max, color = 'bg-sf-gold' }: { label: string; value: number; max: number; color?: string }) => (
-    <div className="flex items-center gap-3 text-sm">
-      <span className="w-28 truncate text-gray-300 text-right shrink-0">{label}</span>
-      <div className="flex-1 bg-gray-700/40 rounded-full h-2.5 overflow-hidden">
+    <div className="flex items-center gap-2 text-sm min-w-0">
+      <span className="w-20 sm:w-28 truncate text-gray-300 text-right shrink-0 text-xs sm:text-sm">{label}</span>
+      <div className="flex-1 bg-gray-700/40 rounded-full h-2.5 overflow-hidden min-w-0">
         <div className={`${color} h-full rounded-full transition-all`} style={{ width: `${(value / max) * 100}%` }} />
       </div>
-      <span className="w-6 text-gray-400 text-xs">{value}</span>
+      <span className="w-5 text-gray-400 text-xs shrink-0">{value}</span>
     </div>
   );
 
   return (
-    <div className="space-y-8">
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div className="space-y-6">
+      {/* Row 1: primary stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <StatCard label="Total Signups" value={total} />
         <StatCard label="Contacted" value={contacted} sub={total ? `${Math.round((contacted / total) * 100)}% of list` : undefined} />
-        <StatCard label="Avg Stay" value={avgStay !== null ? `${avgStay}d` : '—'} sub={stayLengths.length ? `from ${stayLengths.length} entries` : 'No dates yet'} />
-        <StatCard label="Top Check-in Date" value={topCheckinDate ?? '—'} sub={topCheckinEntry ? `${topCheckinEntry[1]} request${topCheckinEntry[1] !== 1 ? 's' : ''}` : undefined} />
+        <StatCard label="This Week" value={thisWeekCount} trend={weekTrend} />
+        <StatCard label="Avg Stay" value={avgStay !== null ? `${avgStay}d` : '—'} sub={stayLengths.length ? `${stayLengths.length} entries` : 'No dates yet'} />
         <StatCard label="Top Country" value={topCountry ? topCountry[0] : '—'} sub={topCountry ? `${topCountry[1]} signup${topCountry[1] !== 1 ? 's' : ''}` : undefined} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Row 2: secondary stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <StatCard label="Top Check-in Date" value={topCheckinDate ?? '—'} sub={topCheckinEntry ? `${topCheckinEntry[1]} request${topCheckinEntry[1] !== 1 ? 's' : ''}` : undefined} />
+        <StatCard label="Latest Signup" value={latestSignup ?? '—'} />
+        <StatCard label="No Dates Given" value={noDateCount} sub={total ? `${Math.round((noDateCount / total) * 100)}% of list` : undefined} />
+      </div>
+
+      {/* Charts grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Signups over time */}
-        <div className={`${cardClass} rounded-xl p-6`}>
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Signups Over Time</h3>
+        <div className={`${cardClass} rounded-xl p-5 min-w-0`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Signups Over Time</h3>
           {signupMonths.length === 0 ? (
             <p className="text-gray-500 text-sm">No data yet</p>
           ) : (
@@ -405,8 +447,8 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
         </div>
 
         {/* Check-in demand */}
-        <div className={`${cardClass} rounded-xl p-6`}>
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Most Requested Check-in Months</h3>
+        <div className={`${cardClass} rounded-xl p-5 min-w-0`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Most Requested Check-in Months</h3>
           {checkinMonths.length === 0 ? (
             <p className="text-gray-500 text-sm">No check-in dates submitted yet</p>
           ) : (
@@ -418,9 +460,23 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
           )}
         </div>
 
+        {/* Check-out demand */}
+        <div className={`${cardClass} rounded-xl p-5 min-w-0`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Most Requested Check-out Months</h3>
+          {checkoutMonths.length === 0 ? (
+            <p className="text-gray-500 text-sm">No check-out dates submitted yet</p>
+          ) : (
+            <div className="space-y-3">
+              {checkoutMonths.map(([month, count]) => (
+                <BarRow key={month} label={formatMonth(month)} value={count} max={maxCheckout} color="bg-purple-400" />
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Countries */}
-        <div className={`${cardClass} rounded-xl p-6`}>
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Top Countries</h3>
+        <div className={`${cardClass} rounded-xl p-5 min-w-0`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Top Countries</h3>
           {topCountries.length === 0 ? (
             <p className="text-gray-500 text-sm">No country data yet</p>
           ) : (
@@ -433,8 +489,8 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
         </div>
 
         {/* Stay length distribution */}
-        <div className={`${cardClass} rounded-xl p-6`}>
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Stay Length Distribution</h3>
+        <div className={`${cardClass} rounded-xl p-5 min-w-0`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Stay Length Distribution</h3>
           {stayLengths.length === 0 ? (
             <p className="text-gray-500 text-sm">No check-in/out dates submitted yet</p>
           ) : (
@@ -446,6 +502,29 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
           )}
         </div>
       </div>
+
+      {/* Recent signups */}
+      {recentSignups.length > 0 && (
+        <div className={`${cardClass} rounded-xl p-5`}>
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">5 Most Recent Signups</h3>
+          <div className="space-y-3">
+            {recentSignups.map(l => (
+              <div key={l.id} className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-2 border-b ${theme === 'dark' ? 'border-gray-700/50' : 'border-gray-100'} last:border-0`}>
+                <div>
+                  <span className="font-medium text-sm">{l.name}</span>
+                  <span className="text-gray-400 text-xs ml-2">{l.email}</span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-gray-400 flex-wrap">
+                  {l.country && <span>{l.country}</span>}
+                  {l.check_in && <span>Check-in: {format(new Date(l.check_in), 'MMM d, yyyy')}</span>}
+                  <span>{format(new Date(l.created_at), 'MMM d, yyyy')}</span>
+                  {l.contacted && <span className="text-emerald-400 font-medium">Contacted</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -523,7 +602,7 @@ function HotelCRM({ theme }: { theme: string }) {
   return (
     <div>
       {/* View toggle */}
-      <div className="flex gap-2 mb-5">
+      <div className="flex flex-wrap gap-2 mb-5">
         <button
           onClick={() => setView('list')}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
@@ -614,21 +693,21 @@ function HotelCRM({ theme }: { theme: string }) {
               <thead>
                 <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
                   {[
-                    { label: 'Name', field: 'name' as keyof HotelLead },
-                    { label: 'Email', field: 'email' as keyof HotelLead },
-                    { label: 'Phone', field: 'phone' as keyof HotelLead },
-                    { label: 'Country', field: 'country' as keyof HotelLead },
-                    { label: 'Check-in', field: 'check_in' as keyof HotelLead },
-                    { label: 'Check-out', field: 'check_out' as keyof HotelLead },
-                    { label: 'Comments', field: null as any },
-                    { label: 'Contacted', field: 'contacted' as keyof HotelLead },
-                    { label: 'Submitted', field: 'created_at' as keyof HotelLead },
-                    { label: 'Delete', field: null as any },
+                    { label: 'Name', field: 'name' as keyof HotelLead, hide: '' },
+                    { label: 'Email', field: 'email' as keyof HotelLead, hide: 'hidden sm:table-cell' },
+                    { label: 'Phone', field: 'phone' as keyof HotelLead, hide: 'hidden md:table-cell' },
+                    { label: 'Country', field: 'country' as keyof HotelLead, hide: 'hidden sm:table-cell' },
+                    { label: 'Check-in', field: 'check_in' as keyof HotelLead, hide: 'hidden lg:table-cell' },
+                    { label: 'Check-out', field: 'check_out' as keyof HotelLead, hide: 'hidden lg:table-cell' },
+                    { label: 'Comments', field: null as any, hide: 'hidden xl:table-cell' },
+                    { label: 'Contacted', field: 'contacted' as keyof HotelLead, hide: '' },
+                    { label: 'Submitted', field: 'created_at' as keyof HotelLead, hide: 'hidden md:table-cell' },
+                    { label: 'Delete', field: null as any, hide: '' },
                   ].map(col => (
                     <th
                       key={col.label}
                       onClick={() => col.field && handleSort(col.field)}
-                      className={`px-4 py-3 text-left font-medium ${col.field ? 'cursor-pointer hover:text-white' : ''}`}
+                      className={`px-4 py-3 text-left font-medium ${col.field ? 'cursor-pointer hover:text-white' : ''} ${col.hide}`}
                     >
                       {col.label}
                       {col.field && <SortIcon field={col.field} />}
@@ -647,16 +726,16 @@ function HotelCRM({ theme }: { theme: string }) {
                     }`}
                   >
                     <td className="px-4 py-3 font-medium whitespace-nowrap">{l.name}</td>
-                    <td className="px-4 py-3 text-gray-400">{l.email}</td>
-                    <td className="px-4 py-3 text-gray-400">{l.phone ?? '—'}</td>
-                    <td className="px-4 py-3 text-gray-400">{l.country ?? '—'}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                    <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">{l.email}</td>
+                    <td className="px-4 py-3 text-gray-400 hidden md:table-cell">{l.phone ?? '—'}</td>
+                    <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">{l.country ?? '—'}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden lg:table-cell">
                       {l.check_in ? format(new Date(l.check_in), 'MMM d, yyyy') : '—'}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden lg:table-cell">
                       {l.check_out ? format(new Date(l.check_out), 'MMM d, yyyy') : '—'}
                     </td>
-                    <td className="px-4 py-3 text-gray-400 max-w-[200px] truncate" title={l.comments ?? ''}>
+                    <td className="px-4 py-3 text-gray-400 max-w-[200px] truncate hidden xl:table-cell" title={l.comments ?? ''}>
                       {l.comments || '—'}
                     </td>
                     <td className="px-4 py-3">
@@ -673,7 +752,7 @@ function HotelCRM({ theme }: { theme: string }) {
                         {l.contacted ? 'Yes' : 'No'}
                       </button>
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden md:table-cell">
                       {format(new Date(l.created_at), 'MMM d, yyyy')}
                     </td>
                     <td className="px-4 py-3">
