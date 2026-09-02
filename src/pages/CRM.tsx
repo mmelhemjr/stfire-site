@@ -274,6 +274,17 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
   }, {} as Record<string, number>);
   const topCountry = Object.entries(countryCounts).sort((a, b) => b[1] - a[1])[0];
 
+  // ── Most popular check-in date ───────────────────────────────────────────────
+  const checkinDateCounts = leads.reduce((acc, l) => {
+    if (!l.check_in) return acc;
+    acc[l.check_in] = (acc[l.check_in] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const topCheckinEntry = Object.entries(checkinDateCounts).sort((a, b) => b[1] - a[1])[0];
+  const topCheckinDate = topCheckinEntry
+    ? new Date(topCheckinEntry[0]).toLocaleDateString('default', { month: 'short', day: 'numeric', year: 'numeric' })
+    : null;
+
   // ── Signups per month ────────────────────────────────────────────────────────
   const signupsByMonth = leads.reduce((acc, l) => {
     const key = l.created_at.slice(0, 7); // "YYYY-MM"
@@ -336,10 +347,11 @@ function HotelAnalytics({ leads, theme }: { leads: HotelLead[]; theme: string })
   return (
     <div className="space-y-8">
       {/* Stat cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <StatCard label="Total Signups" value={total} />
         <StatCard label="Contacted" value={contacted} sub={total ? `${Math.round((contacted / total) * 100)}% of list` : undefined} />
         <StatCard label="Avg Stay" value={avgStay !== null ? `${avgStay}d` : '—'} sub={stayLengths.length ? `from ${stayLengths.length} entries` : 'No dates yet'} />
+        <StatCard label="Top Check-in Date" value={topCheckinDate ?? '—'} sub={topCheckinEntry ? `${topCheckinEntry[1]} request${topCheckinEntry[1] !== 1 ? 's' : ''}` : undefined} />
         <StatCard label="Top Country" value={topCountry ? topCountry[0] : '—'} sub={topCountry ? `${topCountry[1]} signup${topCountry[1] !== 1 ? 's' : ''}` : undefined} />
       </div>
 
