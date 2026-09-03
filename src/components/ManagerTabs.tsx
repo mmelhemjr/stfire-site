@@ -25,8 +25,8 @@ export default function ManagerTabs({ activeTab, onChange }: ManagerTabsProps) {
   ];
 
   return (
-    <div className={`border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-      <div className="flex space-x-8">
+    <div className={`border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'} overflow-x-auto`}>
+      <div className="flex min-w-max space-x-1 sm:space-x-6">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -36,7 +36,7 @@ export default function ManagerTabs({ activeTab, onChange }: ManagerTabsProps) {
               key={tab.id}
               onClick={() => onChange(tab.id)}
               className={`
-                flex items-center space-x-2 py-4 px-1 relative
+                flex items-center gap-1.5 py-3 px-2 sm:px-1 relative whitespace-nowrap
                 ${isActive 
                   ? 'text-sf-gold' 
                   : theme === 'dark' 
@@ -46,8 +46,8 @@ export default function ManagerTabs({ activeTab, onChange }: ManagerTabsProps) {
                 transition-colors
               `}
             >
-              <Icon className="h-5 w-5" />
-              <span className="font-medium">{tab.label}</span>
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+              <span className="font-medium text-sm sm:text-base">{tab.label}</span>
               {isActive && (
                 <span 
                   className="absolute bottom-0 left-0 right-0 h-0.5 bg-sf-gold rounded-full"

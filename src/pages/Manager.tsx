@@ -489,7 +489,7 @@ function Manager() {
     <div className={`pt-24 min-h-screen ${theme === 'dark' ? 'bg-dark-gradient' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">Manager Dashboard</h1>
+          <h1 className="text-xl sm:text-3xl font-bold">Manager Dashboard</h1>
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
@@ -521,8 +521,8 @@ function Manager() {
           </div>
         )}
 
-        <div className={`${containerClasses} p-6 mb-8`}>
-          <div className="flex items-center space-x-4 mb-6">
+        <div className={`${containerClasses} p-4 sm:p-6 mb-8`}>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 sm:mb-6">
             <div className="relative date-picker-container flex-shrink-0">
               <button
                 onClick={(e) => {
@@ -532,7 +532,7 @@ function Manager() {
                 className={`flex items-center space-x-2 px-4 py-2 border rounded-lg focus:outline-none transition-colors ${inputClasses}`}
               >
                 <Calendar className="h-5 w-5 text-gray-400" />
-                <span>{format(selectedDate, 'MMMM d, yyyy')}</span>
+                <span>{format(selectedDate, 'MMM d, yyyy')}</span>
               </button>
               {isCalendarOpen && (
                 <div className="absolute z-50 mt-2">
@@ -551,24 +551,22 @@ function Manager() {
               )}
             </div>
 
-            <div className="flex-1">
-              <div className="flex space-x-2">
-                {areas.map(area => (
-                  <button
-                    key={area.id}
-                    onClick={() => setSelectedArea(area.id)}
-                    className={`px-4 py-2 rounded-lg transition ${
-                      selectedArea === area.id
-                        ? 'bg-sf-gold text-sf-black'
-                        : theme === 'dark'
-                        ? 'hover:bg-gray-700'
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    {area.name}
-                  </button>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {areas.map(area => (
+                <button
+                  key={area.id}
+                  onClick={() => setSelectedArea(area.id)}
+                  className={`px-3 py-2 rounded-lg transition text-sm ${
+                    selectedArea === area.id
+                      ? 'bg-sf-gold text-sf-black'
+                      : theme === 'dark'
+                      ? 'hover:bg-gray-700'
+                      : 'hover:bg-gray-100'
+                  }`}
+                >
+                  {area.name}
+                </button>
+              ))}
             </div>
           </div>
 
