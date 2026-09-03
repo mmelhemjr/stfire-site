@@ -686,96 +686,135 @@ function HotelCRM({ theme }: { theme: string }) {
 
       {loading ? (
         <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-sf-gold" /></div>
+      ) : filtered.length === 0 ? (
+        <div className={`${cardClass} rounded-xl px-4 py-12 text-center text-gray-500`}>No contacts found</div>
       ) : (
-        <div className={`${cardClass} rounded-xl overflow-hidden`}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
-                  {[
-                    { label: 'Name', field: 'name' as keyof HotelLead, hide: '' },
-                    { label: 'Email', field: 'email' as keyof HotelLead, hide: 'hidden sm:table-cell' },
-                    { label: 'Phone', field: 'phone' as keyof HotelLead, hide: 'hidden md:table-cell' },
-                    { label: 'Country', field: 'country' as keyof HotelLead, hide: 'hidden sm:table-cell' },
-                    { label: 'Check-in', field: 'check_in' as keyof HotelLead, hide: 'hidden lg:table-cell' },
-                    { label: 'Check-out', field: 'check_out' as keyof HotelLead, hide: 'hidden lg:table-cell' },
-                    { label: 'Comments', field: null as any, hide: 'hidden xl:table-cell' },
-                    { label: 'Contacted', field: 'contacted' as keyof HotelLead, hide: '' },
-                    { label: 'Submitted', field: 'created_at' as keyof HotelLead, hide: 'hidden md:table-cell' },
-                    { label: 'Delete', field: null as any, hide: '' },
-                  ].map(col => (
-                    <th
-                      key={col.label}
-                      onClick={() => col.field && handleSort(col.field)}
-                      className={`px-4 py-3 text-left font-medium ${col.field ? 'cursor-pointer hover:text-white' : ''} ${col.hide}`}
+        <>
+          {/* ── Mobile cards (hidden on md+) ── */}
+          <div className="md:hidden space-y-3">
+            {filtered.map(l => (
+              <div key={l.id} className={`${cardClass} rounded-xl p-4 space-y-2`}>
+                {/* Header row */}
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <p className="font-semibold">{l.name}</p>
+                    <p className="text-xs text-gray-400">{format(new Date(l.created_at), 'MMM d, yyyy')}</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => toggleContacted(l.id, l.contacted)}
+                      className={`flex items-center gap-1 text-xs font-medium transition ${l.contacted ? 'text-green-400' : 'text-gray-500'}`}
                     >
-                      {col.label}
-                      {col.field && <SortIcon field={col.field} />}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((l, i) => (
-                  <tr
-                    key={l.id}
-                    className={`border-b transition ${
-                      theme === 'dark'
-                        ? `border-gray-700/50 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'} hover:bg-white/5`
-                        : `border-gray-100 ${i % 2 === 0 ? '' : 'bg-gray-50'} hover:bg-gray-100`
-                    }`}
-                  >
-                    <td className="px-4 py-3 font-medium whitespace-nowrap">{l.name}</td>
-                    <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">{l.email}</td>
-                    <td className="px-4 py-3 text-gray-400 hidden md:table-cell">{l.phone ?? '—'}</td>
-                    <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">{l.country ?? '—'}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden lg:table-cell">
-                      {l.check_in ? format(new Date(l.check_in), 'MMM d, yyyy') : '—'}
-                    </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden lg:table-cell">
-                      {l.check_out ? format(new Date(l.check_out), 'MMM d, yyyy') : '—'}
-                    </td>
-                    <td className="px-4 py-3 text-gray-400 max-w-[200px] truncate hidden xl:table-cell" title={l.comments ?? ''}>
-                      {l.comments || '—'}
-                    </td>
-                    <td className="px-4 py-3">
-                      <button
-                        onClick={() => toggleContacted(l.id, l.contacted)}
-                        className={`flex items-center gap-1.5 text-xs font-medium transition ${
-                          l.contacted ? 'text-green-400' : 'text-gray-500 hover:text-gray-300'
-                        }`}
-                      >
-                        {l.contacted
-                          ? <CheckCircle className="h-4 w-4" />
-                          : <Circle className="h-4 w-4" />
-                        }
-                        {l.contacted ? 'Yes' : 'No'}
-                      </button>
-                    </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-gray-400 hidden md:table-cell">
-                      {format(new Date(l.created_at), 'MMM d, yyyy')}
-                    </td>
-                    <td className="px-4 py-3">
-                      <button
-                        onClick={() => handleDelete(l.id)}
-                        disabled={deletingId === l.id}
-                        className="text-red-400 hover:text-red-300 transition disabled:opacity-40"
-                      >
-                        {deletingId === l.id
-                          ? <Loader2 className="h-4 w-4 animate-spin" />
-                          : <Trash2 className="h-4 w-4" />
-                        }
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {filtered.length === 0 && (
-                  <tr><td colSpan={10} className="px-4 py-12 text-center text-gray-500">No contacts found</td></tr>
-                )}
-              </tbody>
-            </table>
+                      {l.contacted ? <CheckCircle className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                      {l.contacted ? 'Contacted' : 'Not contacted'}
+                    </button>
+                    <button
+                      onClick={() => handleDelete(l.id)}
+                      disabled={deletingId === l.id}
+                      className="text-red-400 hover:text-red-300 transition disabled:opacity-40"
+                    >
+                      {deletingId === l.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+                    </button>
+                  </div>
+                </div>
+                {/* Detail rows */}
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm pt-1 border-t border-gray-700/30">
+                  <div><span className="text-gray-500 text-xs uppercase tracking-wide">Email</span><p className="text-gray-300 break-all">{l.email}</p></div>
+                  <div><span className="text-gray-500 text-xs uppercase tracking-wide">Phone</span><p className="text-gray-300">{l.phone || '—'}</p></div>
+                  <div><span className="text-gray-500 text-xs uppercase tracking-wide">Country</span><p className="text-gray-300">{l.country || '—'}</p></div>
+                  <div><span className="text-gray-500 text-xs uppercase tracking-wide">Check-in</span><p className="text-gray-300">{l.check_in ? format(new Date(l.check_in), 'MMM d, yyyy') : '—'}</p></div>
+                  <div><span className="text-gray-500 text-xs uppercase tracking-wide">Check-out</span><p className="text-gray-300">{l.check_out ? format(new Date(l.check_out), 'MMM d, yyyy') : '—'}</p></div>
+                  {l.comments && (
+                    <div className="col-span-2"><span className="text-gray-500 text-xs uppercase tracking-wide">Comments</span><p className="text-gray-300">{l.comments}</p></div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+
+          {/* ── Desktop table (hidden below md) ── */}
+          <div className={`hidden md:block ${cardClass} rounded-xl overflow-hidden`}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className={`border-b ${theme === 'dark' ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
+                    {[
+                      { label: 'Name', field: 'name' as keyof HotelLead },
+                      { label: 'Email', field: 'email' as keyof HotelLead },
+                      { label: 'Phone', field: 'phone' as keyof HotelLead },
+                      { label: 'Country', field: 'country' as keyof HotelLead },
+                      { label: 'Check-in', field: 'check_in' as keyof HotelLead },
+                      { label: 'Check-out', field: 'check_out' as keyof HotelLead },
+                      { label: 'Comments', field: null as any },
+                      { label: 'Contacted', field: 'contacted' as keyof HotelLead },
+                      { label: 'Submitted', field: 'created_at' as keyof HotelLead },
+                      { label: 'Delete', field: null as any },
+                    ].map(col => (
+                      <th
+                        key={col.label}
+                        onClick={() => col.field && handleSort(col.field)}
+                        className={`px-4 py-3 text-left font-medium ${col.field ? 'cursor-pointer hover:text-white' : ''}`}
+                      >
+                        {col.label}
+                        {col.field && <SortIcon field={col.field} />}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((l, i) => (
+                    <tr
+                      key={l.id}
+                      className={`border-b transition ${
+                        theme === 'dark'
+                          ? `border-gray-700/50 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'} hover:bg-white/5`
+                          : `border-gray-100 ${i % 2 === 0 ? '' : 'bg-gray-50'} hover:bg-gray-100`
+                      }`}
+                    >
+                      <td className="px-4 py-3 font-medium whitespace-nowrap">{l.name}</td>
+                      <td className="px-4 py-3 text-gray-400">{l.email}</td>
+                      <td className="px-4 py-3 text-gray-400">{l.phone ?? '—'}</td>
+                      <td className="px-4 py-3 text-gray-400">{l.country ?? '—'}</td>
+                      <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                        {l.check_in ? format(new Date(l.check_in), 'MMM d, yyyy') : '—'}
+                      </td>
+                      <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                        {l.check_out ? format(new Date(l.check_out), 'MMM d, yyyy') : '—'}
+                      </td>
+                      <td className="px-4 py-3 text-gray-400 max-w-[200px] truncate" title={l.comments ?? ''}>
+                        {l.comments || '—'}
+                      </td>
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => toggleContacted(l.id, l.contacted)}
+                          className={`flex items-center gap-1.5 text-xs font-medium transition ${l.contacted ? 'text-green-400' : 'text-gray-500 hover:text-gray-300'}`}
+                        >
+                          {l.contacted ? <CheckCircle className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                          {l.contacted ? 'Yes' : 'No'}
+                        </button>
+                      </td>
+                      <td className="px-4 py-3 whitespace-nowrap text-gray-400">
+                        {format(new Date(l.created_at), 'MMM d, yyyy')}
+                      </td>
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => handleDelete(l.id)}
+                          disabled={deletingId === l.id}
+                          className="text-red-400 hover:text-red-300 transition disabled:opacity-40"
+                        >
+                          {deletingId === l.id
+                            ? <Loader2 className="h-4 w-4 animate-spin" />
+                            : <Trash2 className="h-4 w-4" />
+                          }
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       )}
       </>
       )}
